@@ -1,0 +1,12 @@
+
+body { padding: 80px 0; }
+code { color: inherit; } /* override bootstrap.min.css */
+tbody a { text-decoration:underline; }
+tbody a:hover { text-decoration:none; }
+.popover-content { font-weight:normal; }
+.less { color:gray; }
+.ref { min-width: 16em; }
+.navbar-nav > li > a { float:left; padding-right:0.5em; padding-left:0.5em; }
+.dropdown-menu { min-width: 5px; } /* two small overrides to bootstrap-timepicker.min.css */
+.bootstrap-timepicker-widget table td a { padding:0 }
+th span.glyphicon-chevron-up, th span.glyphicon-chevron-down { color:#c0c0c0; }

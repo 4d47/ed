@@ -1,0 +1,11 @@
+<?php
+
+return array(
+    'db' =>
+        array(
+            'dsn' => 'mysql:host=localhost;charset=utf8;dbname=Chinook',
+            'username' => 'root',
+            'password' => ''
+        ),
+);
+
