@@ -52,8 +52,8 @@ class ScrudlerResource extends \Http\Resource
      * Record $name $message to the session and get it back,
      * only once. Requires a session_start()ed.
      *
-     * @param $name
-     * @param $message
+     * @param string $name
+     * @param mixed $message
      */
     protected static function flash($name, $message = null)
     {
