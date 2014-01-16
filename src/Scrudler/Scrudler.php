@@ -195,7 +195,7 @@ class Scrudler
         $return = array();
         foreach ($data as $key => $value) {
             if (!empty($this->schema[$table][$key])
-                && (!empty($value) || !empty($col['null']))) {
+                && (!empty($value) || !empty($this->schema[$table][$key]['null']))) {
                     $return[$key] = $value;
             }
         }
