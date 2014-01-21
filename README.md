@@ -10,6 +10,8 @@ so update the `dsn` config to point to your database.  To install and run, type 
     $ composer install    # see http://getcomposer.org
     $ php -S localhost:8080 -t public/ public/index.php    # or ./start.cmd if your a lazy cat
 
+![Screenshot](https://github.com/4d47/scrudler/blob/master/screenshot.png?raw=true)
+
 ## Featuring
 
 - [Auryn](https://github.com/rdlowrey/Auryn) PHP Dependency Injection Container
