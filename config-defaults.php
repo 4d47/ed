@@ -24,11 +24,20 @@ return
             # Custom javascript to be included
             array(
             ),
-        'filter' =>
+        'schema_filter' =>
             # Provides a way to remove tables and columns from the display
             function ($schema) {
                 # unset($schema['Customer'], $schema['Employee'], $schema['Invoice'], $schema['InvoiceLine'], $schema['Track']['UnitPrice']);
                 return $schema;
+            },
+        'select_filter' =>
+            # Provides a way to systematically apply filters to 
+            # search queries.  For example this could be used to
+            # hide disabled data to user.
+            function ($table, $params) {
+                // if ($table == 'Album')
+                //    $params['Title Like ?'] = '%Rock%';
+                return $params;
             },
         'labelize' =>
             # Provides a way to customize the display name for the tables and columns

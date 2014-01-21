@@ -7,13 +7,15 @@ class Scrudler
 {
     private $db;
     private $schema;
+    private $selectFilter;
     private $maxPerPage;
 
     public function __construct(\PDO2 $pdo)
     {
         global $config;
         $this->db = $pdo;
-        $this->schema = $config['filter']( self::metadata($this->db->pdo, $config['db']['tag']) );
+        $this->schema = $config['schema_filter']( self::metadata($this->db->pdo, $config['db']['tag']) );
+        $this->selectFilter = $config['select_filter'];
         $this->maxPerPage = $config['max_per_page'];
     }
 
@@ -51,7 +53,7 @@ class Scrudler
         }
         if ($key && $key != 'new') {
             // fetching a specific element identified by key
-            $where = array();
+            $where = call_user_func($this->selectFilter, $table, array());
             $where[$this->getPrimaryKey($table)] = $key;
             if (! $data->row = $this->db->select($table, $where)->fetch()) {
                 return null;
@@ -93,14 +95,15 @@ class Scrudler
 
     private function fetchPage($table, $params = array(), $filters)
     {
+        $params = call_user_func($this->selectFilter, $table, $params);
         // add search params
-        $search = array();
         if (!empty($filters["$table-search"])) {
+            $search = array();
             foreach ($this->schema[$table] as $name => $column) {
                 $search[] = array("$name LIKE ?" => '%' . $filters["$table-search"] . '%');
             }
+            $params[] = $search;
         }
-        $params[] = $search;
         $total = $this->db->count($table, $params);
 
         $c = (object) array(
