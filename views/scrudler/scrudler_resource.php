@@ -6,12 +6,12 @@
         <title><?= $table ?></title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap-theme.min.css">
-        <? foreach (explode(',', 'datepicker.css,bootstrap-datetimepicker.min.css,bootstrap-timepicker.min.css,select2.css,main.css') as $stylesheet): ?>
+        <?php foreach (explode(',', 'datepicker.css,bootstrap-datetimepicker.min.css,bootstrap-timepicker.min.css,select2.css,main.css') as $stylesheet): ?>
             <link rel="stylesheet" href="<?= static::path('assets', 'admin', $stylesheet) ?>">
-        <? endforeach ?>
-        <? foreach ($config['stylesheets'] as $stylesheet): ?>
+        <?php endforeach ?>
+        <?php foreach ($config['stylesheets'] as $stylesheet): ?>
             <link rel="stylesheet" href="<?= $stylesheet ?>">
-        <? endforeach ?>
+        <?php endforeach ?>
     </head>
     <body>
         <div id="wrap">
@@ -178,7 +178,7 @@
 
                                     <div class="pull-left" style="margin:12px 0;">
                                         <span style="color:gray;">
-                                            <? $offset = (($infos->page - 1) * $infos->limit) + 1 ?>
+                                            <?php $offset = (($infos->page - 1) * $infos->limit) + 1 ?>
                                             <?= $config['labelize']($tbl) ?>
                                             <b><?= $offset ?></b>-<b><?= ($offset - 1) + count($infos->results) ?></b>
                                             <?php if (count($infos->results) != $infos->total): ?>
@@ -193,22 +193,22 @@
 
                                     <form action="#<?= $tbl ?>" method="get" class="navbar-form navbar-right" role="search" style="padding:0;">
                                         <?php foreach ($_GET as $name => $value): ?>
-                                            <input type="hidden" name="<?= $name ?>" value="<?= htmlspecialchars($value) ?>">
+                                            <?= tag::input(array('type' => 'hidden', 'name' => $name, 'value' => $value)); ?>
                                         <?php endforeach ?>
                                         <div class="input-group">
-                                            <input type="text" name="<?= "$tbl-search" ?>" value="<?= isset($_GET["$tbl-search"]) ? htmlspecialchars($_GET["$tbl-search"]) : '' ?>" class="form-control input-sm" placeholder="Search">
+                                            <?= tag::input(array('type' => 'text', 'name' => "$tbl-search", 'class' => 'form-control input-sm', 'placeholder' => 'Search', 'value' => isset($_GET["$tbl-search"]) ? $_GET["$tbl-search"] : '')) ?>
                                             <span class="input-group-btn">
                                                 <button type="submit" class="btn btn-default input-sm">
                                                     <span class="glyphicon glyphicon-search"></span>
                                                     <span class="sr-only">Search</span>
                                                 </button>
 
-                                                <? if (!empty($_GET["$tbl-search"])): ?>
+                                                <?php if (!empty($_GET["$tbl-search"])): ?>
                                                 <button type="submit" class="close" style="float:none;margin-left:0.3em;"
                                                     onclick="$('input[name=<?= "$tbl-search" ?>]').val('')">
                                                     &times;
                                                 </button>
-                                                <? endif ?>
+                                                <?php endif ?>
                                             </span>
                                         </div>
                                     </form>

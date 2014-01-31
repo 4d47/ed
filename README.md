@@ -5,7 +5,7 @@
 manipulations.
 
 By default it use [Chinook](https://chinookdatabase.codeplex.com),
-so update the `dsn` config to point to your database.  To install and run, type the following:
+so update the configs to point to your database.  To install and run, type the following:
 
     $ composer install    # see http://getcomposer.org
     $ php -S localhost:8080 -t public/ public/index.php    # or ./start.cmd if your a lazy cat
