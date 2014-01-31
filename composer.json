@@ -20,6 +20,8 @@
         "4d47/tag": "dev-master"
     },
     "require-dev": {
+        "php": ">= 5.4.0",
+        "ext-sqlite3": "*",
         "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
