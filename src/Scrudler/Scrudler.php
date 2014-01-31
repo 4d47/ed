@@ -124,9 +124,8 @@ class Scrudler
         }
         if ($aggr_columns) {
             $aggr_columns = implode(', ', $aggr_columns);
-            $sql = "SELECT $aggr_columns FROM $table";
             $c->aggregates = array();
-            foreach ($this->db->execute($sql)->fetch() as $aggr => $val) {
+            foreach ($this->db->select("$aggr_columns FROM $table", $params)->fetch() as $aggr => $val) {
                 preg_match("/(.+)\((.+)\)/", $aggr, $m);
                 if ($m) {
                     if (empty($c->aggregates[$m[2]]))
