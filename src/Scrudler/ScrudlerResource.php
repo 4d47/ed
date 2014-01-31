@@ -22,7 +22,7 @@ class ScrudlerResource extends \Http\Resource
 
     public function get()
     {
-        $result = $this->db->get($this->table, $this->key, $_GET) ?: $this->raise('Http\NotFound');
+        $result = $this->db->get($this->table, $this->key, $_GET) ?: self::notFound();
         $result->flash = static::flash('info');
         return $result;
     }
@@ -87,9 +87,12 @@ class ScrudlerResource extends \Http\Resource
             print_r($data);
             break;
         default:
-            throw new \Http\MovedPermanently(static::link($resource->table, $resource->key));
-            parent::render($resource, $data);
-            break;
+            self::notFound();
         }
+    }
+    
+    private static function notFound()
+    {
+        throw new \Http\NotFound();
     }
 }
