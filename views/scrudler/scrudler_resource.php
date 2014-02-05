@@ -223,7 +223,6 @@
                                             data-toggle="popover"
                                             data-html="true"
                                             data-placement="bottom"
-                                            data-title="Infos"
                                             data-content="
                                                 <?php
                                                 foreach ($infos->aggregates[$name] as $f => $value) {
