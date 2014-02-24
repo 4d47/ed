@@ -9,6 +9,8 @@ class Scrudler
     private $schema;
     private $selectFilter;
     private $maxPerPage;
+    private $attachments;
+    private $attachmentsDirectory;
 
     public function __construct(\PDO2 $pdo)
     {
@@ -17,6 +19,8 @@ class Scrudler
         $this->schema = $config['schema_filter']( self::metadata($this->db->pdo, $config['db']['tag']) );
         $this->selectFilter = $config['select_filter'];
         $this->maxPerPage = $config['max_per_page'];
+        $this->attachments = $config['attachments'];
+        $this->attachmentsDirectory = $config['attachments_directory'];
     }
 
     public function getTables()
@@ -35,15 +39,21 @@ class Scrudler
         throw new \Exception("$table table must have a primary key");
     }
 
+    public function getAttachments($table)
+    {
+        return empty($this->attachments) ? array() : $this->attachments[$table];
+    }
+
     public function get($table, $key = null, array $filters = array())
     {
         // this is what we will return to the page
         $data = (object) array(
-            'table'   => $table,
-            'key'     => $key,
-            'row'     => null,
-            'has'     => array(),
-            'schema'  => $this->schema,
+            'table' => $table,
+            'key' => $key,
+            'row' => null,
+            'has' => array(),
+            'schema' => $this->schema,
+            'attachments' => $this->attachments,
         );
         if (empty($this->schema[$table])) {
             return null;
@@ -71,11 +81,15 @@ class Scrudler
         return $data;
     }
 
-    public function create($table, $data)
+    public function create($table, $data, $attachments = array())
     {
         $data = $this->filterValues($table, $data);
         $this->db->insert($table, $data);
-        return $this->db->lastInsertId();
+        $key = $this->db->lastInsertId();
+        if ($key && $attachments) {
+            $this->attach($table, $key, $attachments);
+        }
+        return $key;
     }
 
     public function delete($table, $key)
@@ -83,14 +97,43 @@ class Scrudler
         $where = array();
         $where[$this->getPrimaryKey($table)] = $key;
         $this->db->delete($table, $where);
+        foreach ($this->getAttachments($table) as $name => $allowed) {
+
+            $basename = $this->attachmentsDirectory . DIRECTORY_SEPARATOR . $table . DIRECTORY_SEPARATOR . $key . DIRECTORY_SEPARATOR . $name;
+            foreach ($allowed as $mimetype => $extension) {
+                $filename = $basename . $extension;
+                if (file_exists($filename)) {
+                    unlink($basename . $extension);
+                }
+            }
+        }
     }
 
-    public function update($table, $key, $data)
+    public function update($table, $key, $data, $attachments = array())
     {
         $where = array();
         $where[$this->getPrimaryKey($table)] = $key;
         $data = $this->filterValues($table, $data);
         $this->db->update($table, $data, $where);
+        $this->attach($table, $key, $attachments);
+    }
+
+    public function attach($table, $key, $attachments)
+    {
+        $finfo = new \finfo(FILEINFO_MIME_TYPE);
+        foreach ($this->getAttachments($table) as $name => $allowed) {
+            if (!empty($attachments[$name])) {
+                $attachment = $attachments[$name]['tmp_name'];
+                $mimetype = $finfo->file($attachment);
+                if (!empty($allowed[$mimetype])) {
+                    $folder = $this->attachmentsDirectory . DIRECTORY_SEPARATOR . $table . DIRECTORY_SEPARATOR . $key;
+                    if (!is_dir($folder)) {
+                        mkdir($folder, 0755, true);
+                    }
+                    move_uploaded_file($attachment, $folder . DIRECTORY_SEPARATOR . $name . $allowed[$mimetype]);
+                }
+            }
+        }
     }
 
     private function fetchPage($table, $params = array(), $filters)

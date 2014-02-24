@@ -30,10 +30,10 @@ class ScrudlerResource extends \Http\Resource
     public function post()
     {
         if ($this->key === 'new') {
-            $this->key = $this->db->create($this->table, $_POST);
+            $this->key = $this->db->create($this->table, $_POST, $_FILES);
             static::flash('info', "$this->table was successfully created.");
         } else {
-            $this->db->update($this->table, $this->key, $_POST);
+            $this->db->update($this->table, $this->key, $_POST, $_FILES);
             static::flash('info', "$this->table was successfully updated.");
         }
         throw new \Http\SeeOther(static::link($this->table, $this->key));

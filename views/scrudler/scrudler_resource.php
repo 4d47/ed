@@ -48,7 +48,7 @@
                 $pk = key(array_filter($schema[$table], function($el) { return !empty($el['pk']); }));
                 $df = $pk;
                 ?>
-                <form method="post" class="form-record form" role="form">
+                <form method="post" enctype="multipart/form-data" class="form-record form" role="form">
 
                     <?php foreach ($schema[ $table ] as $column => $attr): ?>
                     <div class="form-group">
@@ -134,6 +134,13 @@
                             echo $input;
                         }
                         ?>
+                    </div>
+                    <?php endforeach ?>
+
+                    <?php foreach ($attachments[$table] as $name => $allowedMimes): ?>
+                    <div class="form-group">
+                        <label for="<?= $name ?>" class="control-label"><?= $config['labelize']($name) ?>:</label>
+                        <input type="file" id="<?= $name ?>" name="<?= $name ?>">
                     </div>
                     <?php endforeach ?>
 
