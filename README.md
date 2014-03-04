@@ -1,5 +1,4 @@
-# Scrudler
-
+# Scrudler 
 *Scrudler* is a web user interface to relational databases that supports
 [SCRUDL](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
 manipulations.
@@ -40,7 +39,6 @@ so update the configs to point to your database.  To install and run, type the f
 - Inject Config object instead of using a global variable
 - Add link with min/max aggregates, also why no aggregates on dates too ?
 - Add http basic auth, integrates with the MySQL connection
-- Attach uploaded files to rows
 - Use LocalStorage to save state, eg. edited fields, current sorts and search etc.
 - Would it be possible custom auth based on relations, eg. must have fk down to loggedin user ?
 - This could be cool: http://stackoverflow.com/questions/3005441/web-based-concurrency-solution-required-for-database-editor-in-php#3005575
