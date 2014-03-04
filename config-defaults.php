@@ -68,5 +68,6 @@ return
         'resources' =>
             array(
                 'Scrudler\ScrudlerResource',
+                'Scrudler\AttachmentResource',
             ),
     );

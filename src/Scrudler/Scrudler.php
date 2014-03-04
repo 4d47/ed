@@ -19,7 +19,7 @@ class Scrudler
         $this->schema = $config['schema_filter']( self::metadata($this->db->pdo, $config['db']['tag']) );
         $this->selectFilter = $config['select_filter'];
         $this->maxPerPage = $config['max_per_page'];
-        $this->attachments = $config['attachments'];
+        $this->attachments = array_merge(array_map(function() { return array(); }, $this->schema), $config['attachments']);
         $this->attachmentsDirectory = $config['attachments_directory'];
     }
 
@@ -41,7 +41,12 @@ class Scrudler
 
     public function getAttachments($table)
     {
-        return empty($this->attachments) ? array() : $this->attachments[$table];
+        return empty($this->attachments[$table]) ? array() : $this->attachments[$table];
+    }
+
+    public function getAttachment($table, $id, $name)
+    {
+        return current(glob($this->attachmentsDirectory . DIRECTORY_SEPARATOR . $table . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR . $name . '.*'));
     }
 
     public function get($table, $key = null, array $filters = array())
@@ -51,9 +56,9 @@ class Scrudler
             'table' => $table,
             'key' => $key,
             'row' => null,
+            'attachments' => array(),
             'has' => array(),
             'schema' => $this->schema,
-            'attachments' => $this->attachments,
         );
         if (empty($this->schema[$table])) {
             return null;
@@ -76,6 +81,13 @@ class Scrudler
                         $data->has[$tbl] = $this->fetchPage($tbl, array($name => $data->row->{$col['ref']['column']}), $filters);
                     }
                 }
+            }
+            // add attachments
+            foreach ($this->attachments[$table] as $name => $extensions) {
+                $data->attachments[$name] = array(
+                    'available' => (bool) $this->getAttachment($table, $key, $name),
+                    'extensions' => $extensions
+                );
             }
         }
         return $data;
@@ -130,8 +142,13 @@ class Scrudler
                     if (!is_dir($folder)) {
                         mkdir($folder, 0755, true);
                     }
+                    // remove uploads of different extension
+                    foreach (glob($folder . DIRECTORY_SEPARATOR . $name . '.*') as $filename) {
+                        unlink($filename);
+                    }
                     move_uploaded_file($attachment, $folder . DIRECTORY_SEPARATOR . $name . $allowed[$mimetype]);
                 }
+                // else silently ignoring upload
             }
         }
     }

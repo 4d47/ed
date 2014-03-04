@@ -5,7 +5,9 @@ class ScrudlerResource extends \Http\Resource
 {
     public static $path = '/(:table(/:key)(.:extension))';
     public static $layout = false;
-    public $table, $key, $extension;
+    public $table;
+    public $key;
+    public $extension;
     private $db;
 
     public function __construct(\Scrudler\Scrudler $db)

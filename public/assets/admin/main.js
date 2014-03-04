@@ -46,4 +46,7 @@ $(document).ready(function () {
             },
         });
     });
+    $('input[type="file"]').change(function() {
+        $(this).parent().next('.upload-file-info').html($(this).val());
+    });
 })
