@@ -40,12 +40,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/4d47/php-http-resource.git",
-                "reference": "3d98b0f92edd040d6693f16de14d9694f3b7138b"
+                "reference": "fbf602d79e7c921f8fca1763ec6dfdeee42bddae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/3d98b0f92edd040d6693f16de14d9694f3b7138b",
-                "reference": "3d98b0f92edd040d6693f16de14d9694f3b7138b",
+                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/fbf602d79e7c921f8fca1763ec6dfdeee42bddae",
+                "reference": "fbf602d79e7c921f8fca1763ec6dfdeee42bddae",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +65,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2014-03-03 14:35:40"
+            "time": "2014-03-05 05:50:57"
         },
         {
             "name": "4d47/pdo2",
@@ -669,12 +669,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "e49a47d60348665261f6e279ba383241deb73cab"
+                "reference": "6194137af5f12fbcfc0cb21e269f47542b8beb47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/e49a47d60348665261f6e279ba383241deb73cab",
-                "reference": "e49a47d60348665261f6e279ba383241deb73cab",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/6194137af5f12fbcfc0cb21e269f47542b8beb47",
+                "reference": "6194137af5f12fbcfc0cb21e269f47542b8beb47",
                 "shasum": ""
             },
             "require": {
@@ -709,7 +709,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-24 16:21:51"
+            "time": "2014-03-03 12:53:01"
         }
     ],
     "aliases": [
