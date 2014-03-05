@@ -143,7 +143,7 @@
                         <div class="file">
                             <a class="btn btn-default">
                                 Browse...
-                                <input type="file" name="<?= $name ?>">
+                                <input type="file" name="<?= $name ?>" accept="<?= implode(',', array_keys($infos['extensions'])) ?>">
                             </a>
                             <span class="upload-file-info">
                                 <?php
