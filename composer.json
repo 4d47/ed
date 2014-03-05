@@ -16,6 +16,7 @@
         "danielstjules/stringy": "1.*",
         "pagerfanta/pagerfanta": "1.*",
         "4d47/http-resource": "dev-master",
+        "4d47/dbintrospector": "dev-master",
         "4d47/pdo2": "dev-master",
         "4d47/tag": "dev-master"
     },

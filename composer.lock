@@ -3,8 +3,35 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a9a37a57810eaa807dcf60f472deb01f",
+    "hash": "3698fc306cc84185fd60c3cbe1491ac8",
     "packages": [
+        {
+            "name": "4d47/dbintrospector",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/4d47/php-dbintrospector.git",
+                "reference": "4f4a31463ff0872488b90f8725f955678275c1de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/4d47/php-dbintrospector/zipball/4f4a31463ff0872488b90f8725f955678275c1de",
+                "reference": "4f4a31463ff0872488b90f8725f955678275c1de",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "DbIntrospector.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Introspect database schema",
+            "time": "2014-03-05 06:33:32"
+        },
         {
             "name": "4d47/http-exceptions",
             "version": "dev-master",
@@ -40,12 +67,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/4d47/php-http-resource.git",
-                "reference": "fbf602d79e7c921f8fca1763ec6dfdeee42bddae"
+                "reference": "e5ddd1bcc479cfe92b12646a325f00782b58c35e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/fbf602d79e7c921f8fca1763ec6dfdeee42bddae",
-                "reference": "fbf602d79e7c921f8fca1763ec6dfdeee42bddae",
+                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/e5ddd1bcc479cfe92b12646a325f00782b58c35e",
+                "reference": "e5ddd1bcc479cfe92b12646a325f00782b58c35e",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +92,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2014-03-05 05:50:57"
+            "time": "2014-03-05 06:16:19"
         },
         {
             "name": "4d47/pdo2",
@@ -718,6 +745,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "4d47/http-resource": 20,
+        "4d47/dbintrospector": 20,
         "4d47/pdo2": 20,
         "4d47/tag": 20
     },

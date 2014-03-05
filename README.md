@@ -29,7 +29,6 @@ so update the configs to point to your database.  To install and run, type the f
 - Config to remove CRUD rights
 - Add checkbox (rounded) in listing to allow multiple delete/edit
 - Understand `modified_at`/`created_at` kind of fields for getLastModified
-- Write PostgreSQL reflection , turn metadata() into it's own little project
 - Add a 's' shortcut that focus to search box
 - Make nav responsive
 - CSS print media type
