@@ -32,6 +32,7 @@ class AttachmentResource extends \Http\Resource
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         header('Content-Type: ' . finfo_file($finfo, $data['filename']));
         header('Content-Length: ' . filesize($data['filename']));
+        header('Cache-Control: must-revalidate');
         finfo_close($finfo);
         readfile($data['filename']);
     }
