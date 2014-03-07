@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/4d47/php-dbintrospector.git",
-                "reference": "4f4a31463ff0872488b90f8725f955678275c1de"
+                "reference": "74028913666e127ab364eafbe702ea69215ec20d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/4d47/php-dbintrospector/zipball/4f4a31463ff0872488b90f8725f955678275c1de",
-                "reference": "4f4a31463ff0872488b90f8725f955678275c1de",
+                "url": "https://api.github.com/repos/4d47/php-dbintrospector/zipball/74028913666e127ab364eafbe702ea69215ec20d",
+                "reference": "74028913666e127ab364eafbe702ea69215ec20d",
                 "shasum": ""
             },
             "require": {
@@ -30,7 +30,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Introspect database schema",
-            "time": "2014-03-05 06:33:32"
+            "time": "2014-03-05 06:40:14"
         },
         {
             "name": "4d47/http-exceptions",
@@ -564,12 +564,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "316a5478cc552056ccd3bd27fa0aa8645b2d0a59"
+                "reference": "4dbc3ab5de25a9ffd07796519f9f7f4aaddc37e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/316a5478cc552056ccd3bd27fa0aa8645b2d0a59",
-                "reference": "316a5478cc552056ccd3bd27fa0aa8645b2d0a59",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4dbc3ab5de25a9ffd07796519f9f7f4aaddc37e0",
+                "reference": "4dbc3ab5de25a9ffd07796519f9f7f4aaddc37e0",
                 "shasum": ""
             },
             "require": {
@@ -630,7 +630,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-02-28 10:34:19"
+            "time": "2014-03-05 12:52:24"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

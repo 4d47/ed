@@ -108,6 +108,18 @@
                                 echo tag::option(array('selected' => @$row->$column == $option), $option);
                             }
                             echo tag::end_select();
+                        } else if ($attr['type'] == 'blob') {
+                            echo tag::div(array('class' => 'file'),
+                                tag::a(array('class' => 'btn btn-default'),
+                                    'Browse...',
+                                    tag::input(array('type' => 'file', 'name' => $column))
+                                ),
+                                tag::span(array('class' => 'upload-file-info'),
+                                    $row->$column
+                                        ? tag::a(array('href' => \Scrudler\BlobResource::link($table, $key, $column), 'target' => '_blank'), $column)
+                                        : ''
+                                )
+                            );
                         } else {
                             $options = array('type' => 'text', 'id' => $column, 'name' => $column, 'value' => @$row->$column, 'class' => 'form-control ' . $attr['type'], 'required' => empty($attr['null']));
                             if (!empty($attr['precision'])) {
@@ -134,25 +146,6 @@
                             echo $input;
                         }
                         ?>
-                    </div>
-                    <?php endforeach ?>
-
-                    <?php foreach ($attachments as $name => $infos): ?>
-                    <div class="form-group">
-                        <label for="<?= $name ?>" class="control-label"><?= $config['labelize']($name) ?>:</label>
-                        <div class="file">
-                            <a class="btn btn-default">
-                                Browse...
-                                <input type="file" name="<?= $name ?>" accept="<?= implode(',', array_keys($infos['extensions'])) ?>">
-                            </a>
-                            <span class="upload-file-info">
-                                <?php
-                                if ($infos['available']) {
-                                    echo tag::a(array('href' => Scrudler\AttachmentResource::link($table, $key, $name), 'target' => '_blank'), 'Current');
-                                }
-                                ?>
-                            </span>
-                        </div>
                     </div>
                     <?php endforeach ?>
 

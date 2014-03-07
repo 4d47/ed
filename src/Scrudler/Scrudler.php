@@ -9,8 +9,7 @@ class Scrudler
     private $schema;
     private $selectFilter;
     private $maxPerPage;
-    private $attachments;
-    private $attachmentsDirectory;
+
 
     public function __construct(\PDO2 $pdo)
     {
@@ -19,9 +18,8 @@ class Scrudler
         $this->schema = $config['schema_filter']( \DbIntrospector::introspect($this->db->pdo, $config['db']['tag']) );
         $this->selectFilter = $config['select_filter'];
         $this->maxPerPage = $config['max_per_page'];
-        $this->attachments = array_merge(array_map(function() { return array(); }, $this->schema), $config['attachments']);
-        $this->attachmentsDirectory = $config['attachments_directory'];
     }
+
 
     public function getTables()
     {
@@ -29,6 +27,7 @@ class Scrudler
         sort($tables);
         return $tables;
     }
+
 
     public function getPrimaryKey($table)
     {
@@ -39,15 +38,6 @@ class Scrudler
         throw new \Exception("$table table must have a primary key");
     }
 
-    public function getAttachments($table)
-    {
-        return empty($this->attachments[$table]) ? array() : $this->attachments[$table];
-    }
-
-    public function getAttachment($table, $id, $name)
-    {
-        return current(glob($this->attachmentsDirectory . DIRECTORY_SEPARATOR . $table . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR . $name . '.*'));
-    }
 
     public function get($table, $key = null, array $filters = array())
     {
@@ -56,7 +46,6 @@ class Scrudler
             'table' => $table,
             'key' => $key,
             'row' => null,
-            'attachments' => array(),
             'has' => array(),
             'schema' => $this->schema,
         );
@@ -70,7 +59,8 @@ class Scrudler
             // fetching a specific element identified by key
             $where = call_user_func($this->selectFilter, $table, array());
             $where[$this->getPrimaryKey($table)] = $key;
-            if (! $data->row = $this->db->select($table, $where)->fetch()) {
+            $from = $this->buildFrom($table);
+            if (! $data->row = $this->db->select($from, $where)->fetch()) {
                 return null;
             }
             $this->addToString($table, $data->row);
@@ -82,78 +72,48 @@ class Scrudler
                     }
                 }
             }
-            // add attachments
-            foreach ($this->attachments[$table] as $name => $extensions) {
-                $data->attachments[$name] = array(
-                    'available' => (bool) $this->getAttachment($table, $key, $name),
-                    'extensions' => $extensions
-                );
-            }
         }
         return $data;
     }
 
-    public function create($table, $data, $attachments = array())
+
+    public function fetchColumn($table, $key, $column)
     {
-        $data = $this->filterValues($table, $data);
-        $this->db->insert($table, $data);
-        $key = $this->db->lastInsertId();
-        if ($key && $attachments) {
-            $this->attach($table, $key, $attachments);
+        if (empty($this->schema[$table][$column])) {
+            return null;
         }
-        return $key;
+        // would probably better to return a stream but
+        // https://bugs.php.net/bug.php?id=40913
+        return $this->db->select("$column FROM $table")->fetchColumn();
     }
+
+
+    public function create($table, array $data, array $files = array())
+    {
+        $data = $this->filterValues($table, $data, $files);
+        $this->db->insert($table, $data);
+        return $this->db->lastInsertId();
+    }
+
 
     public function delete($table, $key)
     {
         $where = array();
         $where[$this->getPrimaryKey($table)] = $key;
         $this->db->delete($table, $where);
-        foreach ($this->getAttachments($table) as $name => $allowed) {
-
-            $basename = $this->attachmentsDirectory . DIRECTORY_SEPARATOR . $table . DIRECTORY_SEPARATOR . $key . DIRECTORY_SEPARATOR . $name;
-            foreach ($allowed as $mimetype => $extension) {
-                $filename = $basename . $extension;
-                if (file_exists($filename)) {
-                    unlink($basename . $extension);
-                }
-            }
-        }
     }
 
-    public function update($table, $key, $data, $attachments = array())
+
+    public function update($table, $key, array $data, array $files = array())
     {
         $where = array();
         $where[$this->getPrimaryKey($table)] = $key;
-        $data = $this->filterValues($table, $data);
+        $data = $this->filterValues($table, $data, $files);
         $this->db->update($table, $data, $where);
-        $this->attach($table, $key, $attachments);
     }
 
-    public function attach($table, $key, $attachments)
-    {
-        $finfo = new \finfo(FILEINFO_MIME_TYPE);
-        foreach ($this->getAttachments($table) as $name => $allowed) {
-            if (!empty($attachments[$name])) {
-                $attachment = $attachments[$name]['tmp_name'];
-                $mimetype = $finfo->file($attachment);
-                if (!empty($allowed[$mimetype])) {
-                    $folder = $this->attachmentsDirectory . DIRECTORY_SEPARATOR . $table . DIRECTORY_SEPARATOR . $key;
-                    if (!is_dir($folder)) {
-                        mkdir($folder, 0755, true);
-                    }
-                    // remove uploads of different extension
-                    foreach (glob($folder . DIRECTORY_SEPARATOR . $name . '.*') as $filename) {
-                        unlink($filename);
-                    }
-                    move_uploaded_file($attachment, $folder . DIRECTORY_SEPARATOR . $name . $allowed[$mimetype]);
-                }
-                // else silently ignoring upload
-            }
-        }
-    }
 
-    private function fetchPage($table, $params = array(), $filters)
+    private function fetchPage($table, array $params = array(), $filters)
     {
         $params = call_user_func($this->selectFilter, $table, $params);
         // add search params
@@ -233,7 +193,7 @@ class Scrudler
     }
 
 
-    private function orderBy($table, $filters)
+    private function orderBy($table, array $filters)
     {
         $dir = 'ASC';
         if (empty($filters["$table-sort"])) {
@@ -252,15 +212,33 @@ class Scrudler
     }
 
 
-    private function filterValues($table, $data)
+    private function filterValues($table, array $data, array $files)
     {
         $return = array();
-        foreach ($data as $key => $value) {
-            if (!empty($this->schema[$table][$key])
-                && (!empty($value) || !empty($this->schema[$table][$key]['null']))) {
-                    $return[$key] = $value;
+        foreach ($data as $col => $value) {
+            if (!empty($this->schema[$table][$col])
+                && (!empty($value) || !empty($this->schema[$table][$col]['null']))) {
+                    $return[$col] = $value;
+            }
+        }
+        foreach ($files as $col => $file) {
+            if (!empty($this->schema[$table][$col]) && $file['error'] == UPLOAD_ERR_OK) {
+                $return[$col] = file_get_contents($file['tmp_name']);
             }
         }
         return $return;
+    }
+
+
+    /**
+     * Build custom from turning BLOB column into boolean
+     */
+    private function buildFrom($table)
+    {
+        $cols = array();
+        foreach ($this->schema[$table] as $name => $column) {
+            $cols[] = ($column['type'] == 'blob') ? "$name IS NOT NULL AS $name" : $name;
+        }
+        return implode(',', $cols) . " FROM $table";
     }
 }

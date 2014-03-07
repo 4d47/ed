@@ -24,18 +24,6 @@ return
             # Custom javascript to be included
             array(
             ),
-        'attachments' =>
-            # Defines allowed attachments for tables
-            array(
-                'Album' => array(
-                    'cover' => array(
-                        'image/png' => '.png',
-                        'image/jpeg' => '.jpg',
-                    )
-                )
-            ),
-        'attachments_directory' =>
-            'uploads',
         'schema_filter' =>
             # Provides a way to remove tables and columns from the display
             function ($schema) {
@@ -68,6 +56,6 @@ return
         'resources' =>
             array(
                 'Scrudler\ScrudlerResource',
-                'Scrudler\AttachmentResource',
+                'Scrudler\BlobResource',
             ),
     );
