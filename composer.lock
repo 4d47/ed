@@ -3,35 +3,8 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3698fc306cc84185fd60c3cbe1491ac8",
+    "hash": "a9a37a57810eaa807dcf60f472deb01f",
     "packages": [
-        {
-            "name": "4d47/dbintrospector",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/4d47/php-dbintrospector.git",
-                "reference": "74028913666e127ab364eafbe702ea69215ec20d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/4d47/php-dbintrospector/zipball/74028913666e127ab364eafbe702ea69215ec20d",
-                "reference": "74028913666e127ab364eafbe702ea69215ec20d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "DbIntrospector.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "description": "Introspect database schema",
-            "time": "2014-03-05 06:40:14"
-        },
         {
             "name": "4d47/http-exceptions",
             "version": "dev-master",
@@ -745,7 +718,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "4d47/http-resource": 20,
-        "4d47/dbintrospector": 20,
         "4d47/pdo2": 20,
         "4d47/tag": 20
     },

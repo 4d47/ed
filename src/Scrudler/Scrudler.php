@@ -11,11 +11,11 @@ class Scrudler
     private $maxPerPage;
 
 
-    public function __construct(\PDO2 $pdo)
+    public function __construct(\PDO2 $pdo2)
     {
         global $config;
-        $this->db = $pdo;
-        $this->schema = $config['schema_filter']( \DbIntrospector::introspect($this->db->pdo, $config['db']['tag']) );
+        $this->db = $pdo2;
+        $this->schema = $config['schema_filter']( DatabaseIntrospector::introspect($this->db->pdo, $config['db']['tag']) );
         $this->selectFilter = $config['select_filter'];
         $this->maxPerPage = $config['max_per_page'];
     }
@@ -158,7 +158,8 @@ class Scrudler
         $limit = $c->limit;
         $offset = ($c->page - 1) * $c->limit;
         $extra = $this->orderBy($table, $filters);
-        $c->results = $this->db->select($table, $params, "$extra LIMIT $limit OFFSET $offset")->fetchAll();
+        $from = $this->buildFrom($table);
+        $c->results = $this->db->select($from, $params, "$extra LIMIT $limit OFFSET $offset")->fetchAll();
         foreach ($c->results as &$result) {
             $this->addToString($table, $result);
             $this->addId($table, $result);
