@@ -152,7 +152,7 @@
                     <div class="button-group" style="background:#f0f0f0;padding:1em .5em; border-top:1px solid #cecece;">
                         <button type="submit" class="btn btn-primary">
                             <span class="glyphicon glyphicon-ok-sign"></span>
-                            <?= $key == 'new' ? 'Create' : 'Update' ?>
+                            <?= $key == 'new' ? _('Create') : _('Update') ?>
                         </button>
                         <?php if ($key !== 'new'): ?>
                         <a href="?_method=delete"
@@ -160,7 +160,7 @@
                            style="margin-left:1em;color:#B92C28;"
                            data-bb="confirm">
                             <span class="glyphicon glyphicon-remove"></span>
-                            Delete
+                            <?= _('Delete') ?>
                         </a>
                         <?php endif ?>
                     </div>
