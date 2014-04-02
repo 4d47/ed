@@ -7,16 +7,16 @@
     "packages": [
         {
             "name": "4d47/http-exceptions",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/4d47/php-http-exceptions.git",
-                "reference": "0528a7c2c6619c8a04d025298dc748c9b8b7769e"
+                "reference": "198d068a95b812a3bf3180c552998bb0ef85e61e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/4d47/php-http-exceptions/zipball/0528a7c2c6619c8a04d025298dc748c9b8b7769e",
-                "reference": "0528a7c2c6619c8a04d025298dc748c9b8b7769e",
+                "url": "https://api.github.com/repos/4d47/php-http-exceptions/zipball/198d068a95b812a3bf3180c552998bb0ef85e61e",
+                "reference": "198d068a95b812a3bf3180c552998bb0ef85e61e",
                 "shasum": ""
             },
             "require": {
@@ -32,7 +32,7 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "time": "2014-02-22 03:55:39"
+            "time": "2014-01-02 23:10:20"
         },
         {
             "name": "4d47/http-resource",
@@ -40,16 +40,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/4d47/php-http-resource.git",
-                "reference": "e5ddd1bcc479cfe92b12646a325f00782b58c35e"
+                "reference": "aee71921a85aa80eac891d47e1846439cc8ed0ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/e5ddd1bcc479cfe92b12646a325f00782b58c35e",
-                "reference": "e5ddd1bcc479cfe92b12646a325f00782b58c35e",
+                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/aee71921a85aa80eac891d47e1846439cc8ed0ea",
+                "reference": "aee71921a85aa80eac891d47e1846439cc8ed0ea",
                 "shasum": ""
             },
             "require": {
-                "4d47/http-exceptions": "dev-master",
+                "4d47/http-exceptions": "1.*",
                 "php": ">= 5.3.0"
             },
             "require-dev": {
@@ -65,7 +65,8 @@
             "license": [
                 "MIT"
             ],
-            "time": "2014-03-05 06:16:19"
+            "description": "http resource",
+            "time": "2014-03-12 01:35:25"
         },
         {
             "name": "4d47/pdo2",
@@ -100,12 +101,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/4d47/php-tag-helper.git",
-                "reference": "b76370e823a2e9552d4149cd372cb6f6df86efda"
+                "reference": "a3a79240927644eee1ce33071f984b41c5a18535"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/4d47/php-tag-helper/zipball/b76370e823a2e9552d4149cd372cb6f6df86efda",
-                "reference": "b76370e823a2e9552d4149cd372cb6f6df86efda",
+                "url": "https://api.github.com/repos/4d47/php-tag-helper/zipball/a3a79240927644eee1ce33071f984b41c5a18535",
+                "reference": "a3a79240927644eee1ce33071f984b41c5a18535",
                 "shasum": ""
             },
             "require": {
@@ -118,31 +119,40 @@
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "description": "Tag string generator (Engineered for making soup)",
-            "time": "2014-01-26 02:36:43"
+            "time": "2014-03-26 08:13:42"
         },
         {
             "name": "danielstjules/stringy",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/danielstjules/Stringy.git",
-                "reference": "b990df3c6136509775e03a1f58cb658c5b11b682"
+                "reference": "8d961e25d09f946b463c0581e927a963f3578647"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/b990df3c6136509775e03a1f58cb658c5b11b682",
-                "reference": "b990df3c6136509775e03a1f58cb658c5b11b682",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/8d961e25d09f946b463c0581e927a963f3578647",
+                "reference": "8d961e25d09f946b463c0581e927a963f3578647",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
+            "require-dev": {
+                "phpunit/phpunit": "4.0.*"
+            },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Stringy\\": "src/"
-                }
+                },
+                "classmap": [
+                    "tests"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -168,7 +178,7 @@
                 "utility",
                 "utils"
             ],
-            "time": "2014-02-13 00:26:15"
+            "time": "2014-03-19 23:25:00"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -176,12 +186,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/whiteoctober/Pagerfanta.git",
-                "reference": "e413b68dd4653104f94bba4b96c2ffb38468bd6f"
+                "reference": "c41473a84768ac18ec107033dbfa87229cdefafa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/whiteoctober/Pagerfanta/zipball/e413b68dd4653104f94bba4b96c2ffb38468bd6f",
-                "reference": "e413b68dd4653104f94bba4b96c2ffb38468bd6f",
+                "url": "https://api.github.com/repos/whiteoctober/Pagerfanta/zipball/c41473a84768ac18ec107033dbfa87229cdefafa",
+                "reference": "c41473a84768ac18ec107033dbfa87229cdefafa",
                 "shasum": ""
             },
             "require": {
@@ -234,7 +244,7 @@
                 "paginator",
                 "paging"
             ],
-            "time": "2014-02-19 13:57:56"
+            "time": "2014-03-14 07:32:00"
         },
         {
             "name": "rdlowrey/auryn",
@@ -289,22 +299,22 @@
     "packages-dev": [
         {
             "name": "phpunit/php-code-coverage",
-            "version": "1.2.13",
+            "version": "1.2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "466e7cd2554b4e264c9e3f31216d25ac0e5f3d94"
+                "reference": "6ef2bf3a1c47eca07ea95f0d8a902a6340390b34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/466e7cd2554b4e264c9e3f31216d25ac0e5f3d94",
-                "reference": "466e7cd2554b4e264c9e3f31216d25ac0e5f3d94",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6ef2bf3a1c47eca07ea95f0d8a902a6340390b34",
+                "reference": "6ef2bf3a1c47eca07ea95f0d8a902a6340390b34",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "phpunit/php-file-iterator": ">=1.3.0@stable",
-                "phpunit/php-text-template": ">=1.1.1@stable",
+                "phpunit/php-text-template": ">=1.2.0@stable",
                 "phpunit/php-token-stream": ">=1.1.3@stable"
             },
             "require-dev": {
@@ -346,7 +356,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2013-09-10 08:14:32"
+            "time": "2014-03-28 10:53:45"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -395,16 +405,16 @@
         },
         {
             "name": "phpunit/php-text-template",
-            "version": "1.1.4",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-text-template.git",
-                "reference": "5180896f51c5b3648ac946b05f9ec02be78a0b23"
+                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/5180896f51c5b3648ac946b05f9ec02be78a0b23",
-                "reference": "5180896f51c5b3648ac946b05f9ec02be78a0b23",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
+                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
                 "shasum": ""
             },
             "require": {
@@ -435,7 +445,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2012-10-31 18:15:28"
+            "time": "2014-01-30 17:20:04"
         },
         {
             "name": "phpunit/php-timer",
@@ -537,12 +547,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "4dbc3ab5de25a9ffd07796519f9f7f4aaddc37e0"
+                "reference": "248d6ce95e6ca7f0e3135252c0b984bbe1f52f19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4dbc3ab5de25a9ffd07796519f9f7f4aaddc37e0",
-                "reference": "4dbc3ab5de25a9ffd07796519f9f7f4aaddc37e0",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/248d6ce95e6ca7f0e3135252c0b984bbe1f52f19",
+                "reference": "248d6ce95e6ca7f0e3135252c0b984bbe1f52f19",
                 "shasum": ""
             },
             "require": {
@@ -551,11 +561,11 @@
                 "ext-reflection": "*",
                 "ext-spl": "*",
                 "php": ">=5.3.3",
-                "phpunit/php-code-coverage": "~1.2.1",
-                "phpunit/php-file-iterator": "~1.3.1",
-                "phpunit/php-text-template": "~1.1.1",
-                "phpunit/php-timer": "~1.0.4",
-                "phpunit/phpunit-mock-objects": "~1.2.0",
+                "phpunit/php-code-coverage": "~1.2",
+                "phpunit/php-file-iterator": "~1.3",
+                "phpunit/php-text-template": "~1.1",
+                "phpunit/php-timer": "~1.0",
+                "phpunit/phpunit-mock-objects": "~1.2",
                 "symfony/yaml": "~2.0"
             },
             "require-dev": {
@@ -603,7 +613,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-03-05 12:52:24"
+            "time": "2014-03-28 11:04:36"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -669,12 +679,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "6194137af5f12fbcfc0cb21e269f47542b8beb47"
+                "reference": "cee3067d680232674c6505d91db9d3d635a9a8f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/6194137af5f12fbcfc0cb21e269f47542b8beb47",
-                "reference": "6194137af5f12fbcfc0cb21e269f47542b8beb47",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/cee3067d680232674c6505d91db9d3d635a9a8f4",
+                "reference": "cee3067d680232674c6505d91db9d3d635a9a8f4",
                 "shasum": ""
             },
             "require": {
@@ -709,7 +719,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-03-03 12:53:01"
+            "time": "2014-03-26 11:51:10"
         }
     ],
     "aliases": [
