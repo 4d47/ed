@@ -294,7 +294,7 @@
                             <?php
                             if (count($infos->results) == 0) {
                                 echo tag::tr(
-                                    tag::td(array('colspan' => count($schema[$tbl])), tag::b('No results'))
+                                    tag::td(array('colspan' => count($schema[$tbl])), tag::b(_('No results')))
                                 );
                             } else {
                                 $pk = key(array_filter($schema[$tbl], function($el) { return !empty($el['pk']); }));
@@ -303,12 +303,6 @@
                                     echo '<tr>';
                                     foreach ($schema[$tbl] as $name => $col) {
                                         $value = $obj->$name;
-                                        if ($schema[$tbl][$name]['type'] === 'boolean') {
-                                            $value = tag::code($obj->$name ? 'yes' : 'no');
-                                        }
-                                        $args = strlen($value) > 20
-                                            ? array('title' => \Stringy\StaticStringy::truncate($value, 500, '...'))
-                                            : array();
                                         if (!empty($col['pk'])) {
                                             $label = !empty($col['auto']) ? "#$value" : $value;
                                             $content = tag::a(array('href' => static::link($tbl, $value)), $label);
@@ -316,7 +310,14 @@
                                             $label = ($value && !empty($schema[$col['ref']['table']][$col['ref']['column']])) ? "#$value" : $value;
                                             $content = tag::a(array('href' => static::link($col['ref']['table'], $value)), $label);
                                         } else {
-                                            $content = tag::span($args, \Stringy\StaticStringy::truncate($value, 20, '...'));
+                                            if (in_array($schema[$tbl][$name]['type'], array('boolean', 'blob'))) {
+                                                $content = tag::code($obj->$name ? _('yes') : _('no'));
+                                            } else {
+                                                $args = strlen($value) > 20
+                                                    ? array('title' => \Stringy\StaticStringy::truncate($value, 500, '...'))
+                                                    : array();
+                                                $content = tag::span($args, \Stringy\StaticStringy::truncate($value, 20, '...'));
+                                            }
                                         }
                                         echo tag::td($content);
                                     }
