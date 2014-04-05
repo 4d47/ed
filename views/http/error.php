@@ -2,9 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title><?= $exception->reason ?></title>
+        <title><?= $error->reason ?></title>
     </head>
     <body>
-        <p><?= $exception->reason ?></p>
+        <p><?= $error->reason ?></p>
     </body>
 </html>

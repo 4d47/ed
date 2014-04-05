@@ -4,7 +4,6 @@ namespace Scrudler;
 class ScrudlerResource extends \Http\Resource
 {
     public static $path = '/(:table(/:key)(.:extension))';
-    public static $layout = false;
     public $table;
     public $key;
     public $extension;
@@ -70,14 +69,14 @@ class ScrudlerResource extends \Http\Resource
     /**
      * Override to support multiple formats.
      */
-    protected static function render($resource, $data)
+    public function render($data)
     {
-        switch($resource->extension) {
+        switch($this->extension) {
         case '':
-            parent::render($resource, $data);
+            parent::render($data);
             break;
         case 'html':
-            throw new \Http\MovedPermanently(static::link($resource->table, $resource->key));
+            throw new \Http\MovedPermanently(static::link($this->table, $this->key));
         case 'json':
             header('Content-Type: application/json');
             unset($data->table, $data->key, $data->schema, $data->config);

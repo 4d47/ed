@@ -19,7 +19,7 @@ class BlobResource extends \Http\Resource
         return $this->db->fetchColumn($this->table, $this->id, $this->column);
     }
 
-    protected static function render($resource, $data)
+    public function render($data)
     {
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         header('Content-Type: ' . finfo_buffer($finfo, $data));

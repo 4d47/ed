@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a9a37a57810eaa807dcf60f472deb01f",
+    "hash": "0e7d272516ee8436f0ab5b34086fc9f2",
     "packages": [
         {
             "name": "4d47/http-exceptions",
@@ -40,12 +40,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/4d47/php-http-resource.git",
-                "reference": "aee71921a85aa80eac891d47e1846439cc8ed0ea"
+                "reference": "904f5488e248c5d7504fef15f21853861d928aea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/aee71921a85aa80eac891d47e1846439cc8ed0ea",
-                "reference": "aee71921a85aa80eac891d47e1846439cc8ed0ea",
+                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/904f5488e248c5d7504fef15f21853861d928aea",
+                "reference": "904f5488e248c5d7504fef15f21853861d928aea",
                 "shasum": ""
             },
             "require": {
@@ -66,7 +66,7 @@
                 "MIT"
             ],
             "description": "http resource",
-            "time": "2014-03-12 01:35:25"
+            "time": "2014-04-05 13:54:45"
         },
         {
             "name": "4d47/pdo2",
@@ -732,7 +732,7 @@
         "4d47/tag": 20
     },
     "platform": {
-        "php": ">= 5.3.0"
+        "php": ">= 5.4.0"
     },
     "platform-dev": {
         "php": ">= 5.4.0",
