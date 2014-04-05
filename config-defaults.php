@@ -13,6 +13,8 @@ return
         'db' =>
             array(
                 'dsn' => 'sqlite:chinook.db',
+                'username' => null,
+                'password' => null,
                 'tag' => false
                 # Caching tag, change whenever the schema is changed, disable with `false`
             ),

@@ -80,12 +80,13 @@ class ScrudlerResource extends \Http\Resource
             throw new \Http\MovedPermanently(static::link($resource->table, $resource->key));
         case 'json':
             header('Content-Type: application/json');
-            unset($data->table, $data->key, $data->schema);
+            unset($data->table, $data->key, $data->schema, $data->config);
             $options = defined('JSON_PRETTY_PRINT') ? JSON_PRETTY_PRINT : 0;
             echo json_encode($data, $options);
             break;
         case 'data':
             header('Content-Type: text/plain');
+            unset($data->config);
             print_r($data);
             break;
         default:
