@@ -24,7 +24,6 @@ class BlobResource extends \Http\Resource
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         header('Content-Type: ' . finfo_buffer($finfo, $data));
         header('Content-Length: ' . strlen($data));
-        header('Cache-Control: must-revalidate');
         finfo_close($finfo);
         echo $data;
     }
