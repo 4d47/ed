@@ -1,29 +1,29 @@
 <?php
-namespace Scrudler;
+namespace Ed;
 
-class ScrudlerResource extends \Http\Resource
+class TableResource extends \Http\Resource
 {
     public static $path = '/(:table(/:key)(.:extension))';
     public $table;
     public $key;
     public $extension;
-    private $db;
+    private $model;
 
-    public function __construct(\Scrudler\Scrudler $db)
+    public function __construct(Model $model)
     {
-        $this->db = $db;
+        $this->model = $model;
     }
 
     public function init()
     {
         if (empty($this->table)) {
-            throw new \Http\SeeOther(static::link(current($this->db->getTables())));
+            throw new \Http\SeeOther(static::link(current($this->model->getTables())));
         }
     }
 
     public function get()
     {
-        $result = $this->db->get($this->table, $this->key, $_GET) ?: self::notFound();
+        $result = $this->model->get($this->table, $this->key, $_GET) ?: self::notFound();
         $result->flash = static::flash('info');
         return $result;
     }
@@ -31,10 +31,10 @@ class ScrudlerResource extends \Http\Resource
     public function post()
     {
         if ($this->key === 'new') {
-            $this->key = $this->db->create($this->table, $_POST, $_FILES);
+            $this->key = $this->model->create($this->table, $_POST, $_FILES);
             static::flash('info', "$this->table was successfully created.");
         } else {
-            $this->db->update($this->table, $this->key, $_POST, $_FILES);
+            $this->model->update($this->table, $this->key, $_POST, $_FILES);
             static::flash('info', "$this->table was successfully updated.");
         }
         throw new \Http\SeeOther(static::link($this->table, $this->key));
@@ -44,7 +44,7 @@ class ScrudlerResource extends \Http\Resource
     {
         if (empty($this->key))
             throw new \Http\NotImplemented();
-        $this->db->delete($this->table, $this->key);
+        $this->model->delete($this->table, $this->key);
         static::flash('info', "$this->table was successfully deleted.");
         throw new \Http\SeeOther(static::link($this->table));
     }

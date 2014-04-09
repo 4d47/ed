@@ -58,7 +58,7 @@ return
             ),
         'resources' =>
             array(
-                'Scrudler\ScrudlerResource',
-                'Scrudler\BlobResource',
+                'Ed\TableResource',
+                'Ed\ColumnResource',
             ),
     );

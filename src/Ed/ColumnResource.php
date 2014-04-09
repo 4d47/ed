@@ -1,22 +1,22 @@
 <?php
-namespace Scrudler;
+namespace Ed;
 
-class BlobResource extends \Http\Resource
+class ColumnResource extends \Http\Resource
 {
     public static $path = '/:table/:id/:column';
     public $table;
     public $id;
     public $column;
-    private $db;
+    private $model;
 
-    public function __construct(\Scrudler\Scrudler $db)
+    public function __construct(Model $model)
     {
-        $this->db = $db;
+        $this->model = $model;
     }
 
     public function get()
     {
-        return $this->db->fetchColumn($this->table, $this->id, $this->column);
+        return $this->model->fetchColumn($this->table, $this->id, $this->column);
     }
 
     public function render($data)

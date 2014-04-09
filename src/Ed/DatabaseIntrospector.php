@@ -1,5 +1,5 @@
 <?php
-namespace Scrudler;
+namespace Ed;
 
 class DatabaseIntrospector
 {

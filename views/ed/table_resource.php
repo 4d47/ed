@@ -116,7 +116,7 @@
                                 ),
                                 tag::span(array('class' => 'upload-file-info'),
                                     $row->$column
-                                        ? tag::a(array('href' => \Scrudler\BlobResource::link($table, $key, $column), 'target' => '_blank'), $column)
+                                        ? tag::a(array('href' => \Ed\ColumnResource::link($table, $key, $column), 'target' => '_blank'), $column)
                                         : ''
                                 )
                             );

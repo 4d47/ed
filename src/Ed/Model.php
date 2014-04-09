@@ -1,9 +1,9 @@
 <?php
-namespace Scrudler;
+namespace Ed;
 
 use Stringy\StaticStringy as S;
 
-class Scrudler
+class Model
 {
     private $db;
     private $schema;

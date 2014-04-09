@@ -1,6 +1,6 @@
-# Scrudler 
-*Scrudler* is a web user interface to relational databases that supports
-[SCRUDL](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
+# Ed 
+*Ed* is a web user interface to relational databases that supports
+[CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
 manipulations.
 
 By default it use [Chinook](https://chinookdatabase.codeplex.com),

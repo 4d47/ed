@@ -1,7 +1,7 @@
 <?php
-namespace Scrudler;
+namespace Ed;
 
-class ScrudlerTest extends \PHPUnit_Framework_TestCase
+class ModelTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
@@ -37,7 +37,7 @@ class ScrudlerTest extends \PHPUnit_Framework_TestCase
         $pdo->exec("INSERT INTO actors VALUES (1, 'Al', 'Pacino')");
         $pdo->exec("INSERT INTO actors VALUES (2, 'Wesley', 'Snipes')");
         $pdo->exec("INSERT INTO actors VALUES (3, 'Tom', 'Cruise')");
-        $this->db = new Scrudler($pdo, require 'config-defaults.php');
+        $this->db = new Model($pdo, require 'config-defaults.php');
     }
 
     public function testGetTables()
