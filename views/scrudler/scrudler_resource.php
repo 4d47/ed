@@ -48,7 +48,7 @@
                 $pk = key(array_filter($schema[$table], function($el) { return !empty($el['pk']); }));
                 $df = $pk;
                 ?>
-                <form method="post" class="form-record form" role="form">
+                <form method="post" enctype="multipart/form-data" class="form-record form" role="form">
 
                     <?php foreach ($schema[ $table ] as $column => $attr): ?>
                     <div class="form-group">
@@ -108,6 +108,18 @@
                                 echo tag::option(array('selected' => @$row->$column == $option), $option);
                             }
                             echo tag::end_select();
+                        } else if ($attr['type'] == 'blob') {
+                            echo tag::div(array('class' => 'file'),
+                                tag::a(array('class' => 'btn btn-default'),
+                                    'Browse...',
+                                    tag::input(array('type' => 'file', 'name' => $column))
+                                ),
+                                tag::span(array('class' => 'upload-file-info'),
+                                    $row->$column
+                                        ? tag::a(array('href' => \Scrudler\BlobResource::link($table, $key, $column), 'target' => '_blank'), $column)
+                                        : ''
+                                )
+                            );
                         } else {
                             $options = array('type' => 'text', 'id' => $column, 'name' => $column, 'value' => @$row->$column, 'class' => 'form-control ' . $attr['type'], 'required' => empty($attr['null']));
                             if (!empty($attr['precision'])) {
@@ -140,7 +152,7 @@
                     <div class="button-group" style="background:#f0f0f0;padding:1em .5em; border-top:1px solid #cecece;">
                         <button type="submit" class="btn btn-primary">
                             <span class="glyphicon glyphicon-ok-sign"></span>
-                            <?= $key == 'new' ? 'Create' : 'Update' ?>
+                            <?= $key == 'new' ? _('Create') : _('Update') ?>
                         </button>
                         <?php if ($key !== 'new'): ?>
                         <a href="?_method=delete"
@@ -148,7 +160,7 @@
                            style="margin-left:1em;color:#B92C28;"
                            data-bb="confirm">
                             <span class="glyphicon glyphicon-remove"></span>
-                            Delete
+                            <?= _('Delete') ?>
                         </a>
                         <?php endif ?>
                     </div>
@@ -282,7 +294,7 @@
                             <?php
                             if (count($infos->results) == 0) {
                                 echo tag::tr(
-                                    tag::td(array('colspan' => count($schema[$tbl])), tag::b('No results'))
+                                    tag::td(array('colspan' => count($schema[$tbl])), tag::b(_('No results')))
                                 );
                             } else {
                                 $pk = key(array_filter($schema[$tbl], function($el) { return !empty($el['pk']); }));
@@ -291,12 +303,6 @@
                                     echo '<tr>';
                                     foreach ($schema[$tbl] as $name => $col) {
                                         $value = $obj->$name;
-                                        if ($schema[$tbl][$name]['type'] === 'boolean') {
-                                            $value = tag::code($obj->$name ? 'yes' : 'no');
-                                        }
-                                        $args = strlen($value) > 20
-                                            ? array('title' => \Stringy\StaticStringy::truncate($value, 500, '...'))
-                                            : array();
                                         if (!empty($col['pk'])) {
                                             $label = !empty($col['auto']) ? "#$value" : $value;
                                             $content = tag::a(array('href' => static::link($tbl, $value)), $label);
@@ -304,7 +310,14 @@
                                             $label = ($value && !empty($schema[$col['ref']['table']][$col['ref']['column']])) ? "#$value" : $value;
                                             $content = tag::a(array('href' => static::link($col['ref']['table'], $value)), $label);
                                         } else {
-                                            $content = tag::span($args, \Stringy\StaticStringy::truncate($value, 20, '...'));
+                                            if (in_array($schema[$tbl][$name]['type'], array('boolean', 'blob'))) {
+                                                $content = tag::code($obj->$name ? _('yes') : _('no'));
+                                            } else {
+                                                $args = strlen($value) > 20
+                                                    ? array('title' => \Stringy\StaticStringy::truncate($value, 500, '...'))
+                                                    : array();
+                                                $content = tag::span($args, \Stringy\StaticStringy::truncate($value, 20, '...'));
+                                            }
                                         }
                                         echo tag::td($content);
                                     }

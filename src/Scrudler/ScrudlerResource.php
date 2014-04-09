@@ -4,8 +4,9 @@ namespace Scrudler;
 class ScrudlerResource extends \Http\Resource
 {
     public static $path = '/(:table(/:key)(.:extension))';
-    public static $layout = false;
-    public $table, $key, $extension;
+    public $table;
+    public $key;
+    public $extension;
     private $db;
 
     public function __construct(\Scrudler\Scrudler $db)
@@ -30,10 +31,10 @@ class ScrudlerResource extends \Http\Resource
     public function post()
     {
         if ($this->key === 'new') {
-            $this->key = $this->db->create($this->table, $_POST);
+            $this->key = $this->db->create($this->table, $_POST, $_FILES);
             static::flash('info', "$this->table was successfully created.");
         } else {
-            $this->db->update($this->table, $this->key, $_POST);
+            $this->db->update($this->table, $this->key, $_POST, $_FILES);
             static::flash('info', "$this->table was successfully updated.");
         }
         throw new \Http\SeeOther(static::link($this->table, $this->key));
@@ -68,22 +69,23 @@ class ScrudlerResource extends \Http\Resource
     /**
      * Override to support multiple formats.
      */
-    protected static function render($resource, $data)
+    public function render($data)
     {
-        switch($resource->extension) {
+        switch($this->extension) {
         case '':
-            parent::render($resource, $data);
+            parent::render($data);
             break;
         case 'html':
-            throw new \Http\MovedPermanently(static::link($resource->table, $resource->key));
+            throw new \Http\MovedPermanently(static::link($this->table, $this->key));
         case 'json':
             header('Content-Type: application/json');
-            unset($data->table, $data->key, $data->schema);
+            unset($data->table, $data->key, $data->schema, $data->config);
             $options = defined('JSON_PRETTY_PRINT') ? JSON_PRETTY_PRINT : 0;
             echo json_encode($data, $options);
             break;
         case 'data':
             header('Content-Type: text/plain');
+            unset($data->config);
             print_r($data);
             break;
         default:

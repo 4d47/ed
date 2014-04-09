@@ -5,9 +5,6 @@ class ScrudlerTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        global $config;
-        $config = require 'config-defaults.php';
-
         $pdo = new \PDO2(new \PDO('sqlite::memory:'));
         $pdo->exec("
             CREATE TABLE actors (
@@ -40,7 +37,7 @@ class ScrudlerTest extends \PHPUnit_Framework_TestCase
         $pdo->exec("INSERT INTO actors VALUES (1, 'Al', 'Pacino')");
         $pdo->exec("INSERT INTO actors VALUES (2, 'Wesley', 'Snipes')");
         $pdo->exec("INSERT INTO actors VALUES (3, 'Tom', 'Cruise')");
-        $this->db = new Scrudler($pdo);
+        $this->db = new Scrudler($pdo, require 'config-defaults.php');
     }
 
     public function testGetTables()

@@ -1,41 +1,49 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2013-10-16 14:01-0500\n"
-"PO-Revision-Date: 2013-10-16 14:23-0500\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2014-03-09 11:11-0500\n"
+"PO-Revision-Date: 2014-03-09 11:12-0500\n"
+"Last-Translator: Mathieu Gagnon <mathieu@gagnon.name>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
-"X-Poedit-Basepath: C:\\Users\\Mathieu Gagnon\\Sandbox\\php-is-the-framework"
-"\\example\n"
+"X-Poedit-Basepath: ../../../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: views\n"
 
-#: src/My/Resource/Product.php:13
-msgid "Pizza Cutter"
-msgstr "Couteau à Pizza"
-
-#: src/My/Resource/Product.php:14
-msgid "This amazing pizza cutter is priceless."
-msgstr "Ce couteau à pizza étonnante est inestimable."
-
-#: views/http/internal_server_error.php:2
-msgid "Internal Server Error"
-msgstr "Erreur Interne du Serveur"
-
-#: views/http/internal_server_error.php:3
+#: views/http/error.php:5
 msgid "Something went wrong, we're looking into it."
 msgstr "Quelque chose s'est mal passé, nous sommes à la recherche en elle."
 
-#: views/http/not_found.php:2
+#: views/http/not_found.php:5 views/http/not_found.php:8
 msgid "Not Found"
 msgstr "Page Introuvable"
 
-#: views/http/not_found.php:3
+#: views/http/not_found.php:9
 msgid "We couldn't find the page you requested."
 msgstr "Nous n'avons pas pu trouver la page que vous avez demandé."
+
+#: views/scrudler/scrudler_resource.php:155
+msgid "Create"
+msgstr ""
+
+#: views/scrudler/scrudler_resource.php:155
+msgid "Update"
+msgstr ""
+
+#: views/scrudler/scrudler_resource.php:163
+msgid "Delete"
+msgstr ""
+
+#~ msgid "Pizza Cutter"
+#~ msgstr "Couteau à Pizza"
+
+#~ msgid "This amazing pizza cutter is priceless."
+#~ msgstr "Ce couteau à pizza étonnante est inestimable."
+
+#~ msgid "Internal Server Error"
+#~ msgstr "Erreur Interne du Serveur"
