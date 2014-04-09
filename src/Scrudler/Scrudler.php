@@ -15,10 +15,10 @@ class Scrudler
     public function __construct(\PDO2 $pdo2, array $config)
     {
         $this->db = $pdo2;
-        $this->schema = $config['schema_filter']( DatabaseIntrospector::introspect($this->db->pdo, $config['db']['tag']) );
-        $this->selectFilter = $config['select_filter'];
-        $this->maxPerPage = $config['max_per_page'];
-        $this->config = $config;
+        $this->schema = $config['db']['schema_filter']( DatabaseIntrospector::introspect($this->db->pdo, $config['db']['tag']) );
+        $this->selectFilter = $config['db']['select_filter'];
+        $this->maxPerPage = $config['ui']['max_per_page'];
+        $this->config = $config['ui'];
     }
 
 

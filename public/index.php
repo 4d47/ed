@@ -21,8 +21,8 @@ $injector->define('PDO', array(':dsn' => $config['db']['dsn'], ':username' => $c
 
 # initialize locale
 # note: will not work on builtin server
-putenv('LC_ALL=' . $config['locale']);
-setlocale(LC_ALL, $config['locale']);
+putenv('LC_ALL=' . $config['ui']['locale']);
+setlocale(LC_ALL, $config['ui']['locale']);
 bindtextdomain('messages', 'locales');
 textdomain('messages');
 
