@@ -115,7 +115,7 @@
                                     tag::input(array('type' => 'file', 'name' => $column))
                                 ),
                                 tag::span(array('class' => 'upload-file-info'),
-                                    $row->$column
+                                    $row && $row->$column
                                         ? tag::a(array('href' => \Ed\ColumnResource::link($table, $key, $column), 'target' => '_blank'), $column)
                                         : ''
                                 )
