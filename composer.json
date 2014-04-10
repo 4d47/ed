@@ -1,7 +1,7 @@
 {
-    "name": "4d47/scrudler",
-    "description": "A SCRUDL UI to RDBMS",
-    "keywords": ["database", "admin", "crud", "scrudl"],
+    "name": "4d47/ed",
+    "description": "Ed, the editor",
+    "keywords": ["database", "admin", "crud"],
     "type": "project",
     "authors": [
         {

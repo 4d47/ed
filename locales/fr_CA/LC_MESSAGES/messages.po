@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2014-03-09 11:11-0500\n"
-"PO-Revision-Date: 2014-03-09 11:12-0500\n"
+"POT-Creation-Date: 2014-04-10 06:15-0500\n"
+"PO-Revision-Date: 2014-04-10 06:16-0500\n"
 "Last-Translator: Mathieu Gagnon <mathieu@gagnon.name>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,29 +15,38 @@ msgstr ""
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: views\n"
 
-#: views/http/error.php:5
-msgid "Something went wrong, we're looking into it."
-msgstr "Quelque chose s'est mal passé, nous sommes à la recherche en elle."
-
-#: views/http/not_found.php:5 views/http/not_found.php:8
-msgid "Not Found"
-msgstr "Page Introuvable"
-
-#: views/http/not_found.php:9
-msgid "We couldn't find the page you requested."
-msgstr "Nous n'avons pas pu trouver la page que vous avez demandé."
-
-#: views/scrudler/scrudler_resource.php:155
+#: views/ed/table_resource.php:155
 msgid "Create"
-msgstr ""
+msgstr "Créer"
 
-#: views/scrudler/scrudler_resource.php:155
+#: views/ed/table_resource.php:155
 msgid "Update"
-msgstr ""
+msgstr "Mettre à jour"
 
-#: views/scrudler/scrudler_resource.php:163
+#: views/ed/table_resource.php:163
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
+
+#: views/ed/table_resource.php:297
+msgid "No results"
+msgstr "Aucun résultats"
+
+#: views/ed/table_resource.php:314
+msgid "yes"
+msgstr "oui"
+
+#: views/ed/table_resource.php:314
+msgid "no"
+msgstr "non"
+
+#~ msgid "Something went wrong, we're looking into it."
+#~ msgstr "Quelque chose s'est mal passé, nous sommes à la recherche en elle."
+
+#~ msgid "Not Found"
+#~ msgstr "Page Introuvable"
+
+#~ msgid "We couldn't find the page you requested."
+#~ msgstr "Nous n'avons pas pu trouver la page que vous avez demandé."
 
 #~ msgid "Pizza Cutter"
 #~ msgstr "Couteau à Pizza"
