@@ -84,9 +84,11 @@ class Model
         if (empty($this->schema[$table][$column])) {
             return null;
         }
+        $where = array();
+        $where[$this->getPrimaryKey($table)] = $key;
         // would probably better to return a stream but
         // https://bugs.php.net/bug.php?id=40913
-        return $this->db->select("$column FROM $table")->fetchColumn();
+        return $this->db->select("$column FROM $table", $where)->fetchColumn();
     }
 
 
