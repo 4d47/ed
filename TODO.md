@@ -1,5 +1,6 @@
 # Ideas and stuff
 
+- Upload with URL
 - I hate __tostring, its hacky
 - Improve error pages, eg use layout
 - Config to remove CRUD rights
