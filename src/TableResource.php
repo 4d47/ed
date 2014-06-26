@@ -17,7 +17,7 @@ class TableResource extends \Http\Resource
     public function init()
     {
         if (empty($this->table)) {
-            throw new \Http\SeeOther(static::link(current($this->model->getTables())));
+            throw new \Http\SeeOther(static::link(array('table' => current($this->model->getTables()))));
         }
     }
 
@@ -37,7 +37,7 @@ class TableResource extends \Http\Resource
             $this->model->update($this->table, $this->key, $_POST, $_FILES);
             static::flash('info', "$this->table was successfully updated.");
         }
-        throw new \Http\SeeOther(static::link($this->table, $this->key));
+        throw new \Http\SeeOther(static::link(array('table' => $this->table, 'key' => $this->key)));
     }
 
     public function delete()
@@ -46,7 +46,7 @@ class TableResource extends \Http\Resource
             throw new \Http\NotImplemented();
         $this->model->delete($this->table, $this->key);
         static::flash('info', "$this->table was successfully deleted.");
-        throw new \Http\SeeOther(static::link($this->table));
+        throw new \Http\SeeOther(static::link(array('table' => $this->table)));
     }
 
     /**
@@ -76,7 +76,7 @@ class TableResource extends \Http\Resource
             parent::render($data);
             break;
         case 'html':
-            throw new \Http\MovedPermanently(static::link($this->table, $this->key));
+            throw new \Http\MovedPermanently(static::link(array('table' => $this->table, 'key' => $this->key)));
         case 'json':
             header('Content-Type: application/json');
             unset($data->table, $data->key, $data->schema, $data->config);

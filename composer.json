@@ -13,21 +13,20 @@
     "require": {
         "php": ">= 5.4.0",
         "rdlowrey/auryn": "0.9.1",
-        "danielstjules/stringy": "1.*",
-        "pagerfanta/pagerfanta": "1.*",
-        "4d47/http-resource": "dev-master",
-        "4d47/pdo2": "dev-master",
-        "4d47/tag": "dev-master"
+        "danielstjules/stringy": "~1.5",
+        "pagerfanta/pagerfanta": "~1.0",
+        "4d47/http-resource": "~2.0",
+        "4d47/pdo2": "~1.0",
+        "4d47/tag": "~2.0"
     },
     "require-dev": {
         "php": ">= 5.4.0",
         "ext-sqlite3": "*",
-        "phpunit/phpunit": "3.7.*"
+        "phpunit/phpunit": "~3.7"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Ed\\": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap-theme.min.css">
         <?php foreach (explode(',', 'datepicker.css,bootstrap-datetimepicker.min.css,bootstrap-timepicker.min.css,select2.css,main.css') as $stylesheet): ?>
-            <link rel="stylesheet" href="<?= static::path('assets', 'admin', $stylesheet) ?>">
+            <link rel="stylesheet" href="/assets/admin/<?= $stylesheet ?>">
         <?php endforeach ?>
         <?php foreach ($config['stylesheets'] as $stylesheet): ?>
             <link rel="stylesheet" href="<?= $stylesheet ?>">
@@ -24,10 +24,10 @@
                     <ul class="nav navbar-nav">
                         <?php foreach (array_keys($schema) as $tbl): ?>
                         <li class="<?= ($tbl === $table) ? 'active' : '' ?>">
-                            <a href="<?= static::link($tbl) ?>"><?= $config['labelize']($tbl) ?></a>
+                            <a href="<?= static::link(array('table' => $tbl)) ?>"><?= $config['labelize']($tbl) ?></a>
                         </li>
                         <li>
-                            <a href="<?= static::link($tbl, 'new') ?>" title="new record to <?= $config['labelize']($tbl) ?>">+</a>
+                            <a href="<?= static::link(array('table' => $tbl, 'key' => 'new')) ?>" title="new record to <?= $config['labelize']($tbl) ?>">+</a>
                         </li>
                         <?php endforeach ?>
                     </ul>
@@ -75,7 +75,7 @@
                             if ($key != 'new') {
                                 // add a little goto link
                                 echo ' ';
-                                echo tag::a(array('href' => static::link($schema[ $table ][$column]['ref']['table'], $row->$column)), new tag('<span class="glyphicon glyphicon-chevron-right"></span>'));
+                                echo tag::a(array('href' => static::link(array('table' => $schema[ $table ][$column]['ref']['table'], 'key' => $row->$column))), new tag('<span class="glyphicon glyphicon-chevron-right"></span>'));
                             }
                         } else if ($attr['type'] === 'text') {
                             echo tag::textarea(array('id' => $column, 'name' => $column, 'class' => 'form-control', 'required' => empty($attr['null'])), @$row->$column);
@@ -116,7 +116,7 @@
                                 ),
                                 tag::span(array('class' => 'upload-file-info'),
                                     $row && $row->$column
-                                        ? tag::a(array('href' => \Ed\ColumnResource::link($table, $key, $column), 'target' => '_blank'), $column)
+                                        ? tag::a(array('href' => \Ed\ColumnResource::link(array('table' => $table, 'id' => $key, 'column' => $column)), 'target' => '_blank'), $column)
                                         : ''
                                 )
                             );
@@ -197,7 +197,7 @@
                                                 / <b><?= $infos->total ?></b> in total
                                             <?php endif ?>
                                         </span>
-                                        <a href="<?= static::link($tbl, 'new') . $query ?>" style="padding-left:1em;">
+                                        <a href="<?= static::link(array('table' => $tbl, 'key' => 'new')) . $query ?>" style="padding-left:1em;">
                                             <span class="glyphicon glyphicon-plus-sign"></span>
                                             New
                                         </a>
@@ -305,10 +305,10 @@
                                         $value = $obj->$name;
                                         if (!empty($col['pk'])) {
                                             $label = !empty($col['auto']) ? "#$value" : $value;
-                                            $content = tag::a(array('href' => static::link($tbl, $value)), $label);
+                                            $content = tag::a(array('href' => static::link(array('table' => $tbl, 'key' => $value))), $label);
                                         } else if (!empty($col['ref'])) {
                                             $label = ($value && !empty($schema[$col['ref']['table']][$col['ref']['column']])) ? "#$value" : $value;
-                                            $content = tag::a(array('href' => static::link($col['ref']['table'], $value)), $label);
+                                            $content = tag::a(array('href' => static::link(array('table' => $col['ref']['table'], 'key' => $value))), $label);
                                         } else {
                                             if (in_array($schema[$tbl][$name]['type'], array('boolean', 'blob'))) {
                                                 $content = tag::code($obj->$name ? _('yes') : _('no'));
@@ -332,7 +332,7 @@
             </div>
         </div>
         <?php foreach (explode(',', 'jquery-2.0.3.min.js,bootstrap.min.js,bootstrap-datetimepicker.min.js,bootstrap-timepicker.min.js,bootstrap-datepicker.js,select2.min.js,bootbox.min.js,main.js') as $script): ?>
-            <script src="<?= static::path('assets', 'admin', $script) ?>"></script>
+            <script src="/assets/admin/<?= $script ?>"></script>
         <?php endforeach ?>
         <?php foreach ($config['scripts'] as $script): ?>
             <script src="<?= $script ?>"></script>
