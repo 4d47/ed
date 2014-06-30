@@ -17,7 +17,7 @@ $config = array_replace_recursive(require 'config-defaults.php', file_exists('co
 # wireup dependencies
 $injector = new Auryn\Provider();
 $injector->define('Ed\Model', array(':config' => $config));
-$injector->define('PDO', array(':dsn' => $config['db']['dsn'], ':username' => $config['db']['username'], ':passwd' => $config['db']['password']));
+$injector->define('PDO', array(':dsn' => $config['db']['dsn'], ':username' => $config['db']['username'], ':passwd' => $config['db']['password'], ':options' => array()));
 
 # initialize locale
 # note: will not work on builtin server
