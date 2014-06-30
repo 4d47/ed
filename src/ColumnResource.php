@@ -1,7 +1,7 @@
 <?php
 namespace Ed;
 
-class ColumnResource extends \Http\Resource
+class ColumnResource extends Base
 {
     public static $path = '/:table/:id/:column';
     public $table;

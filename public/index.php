@@ -27,5 +27,5 @@ bindtextdomain('messages', 'locales');
 textdomain('messages');
 
 # handle request
-\Http\Resource::handle($config['resources'], array($injector, 'make'));
+\Http\Resource::handle(\Ed\Base::setup(), array($injector, 'make'));
 

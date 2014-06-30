@@ -1,7 +1,7 @@
 <?php
 namespace Ed;
 
-class TableResource extends \Http\Resource
+class TableResource extends Base
 {
     public static $path = '/(:table(/:key)(.:extension))';
     public $table;

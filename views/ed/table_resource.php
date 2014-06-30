@@ -6,9 +6,7 @@
         <title><?= $table ?></title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap-theme.min.css">
-        <?php foreach (explode(',', 'datepicker.css,bootstrap-datetimepicker.min.css,bootstrap-timepicker.min.css,select2.css,main.css') as $stylesheet): ?>
-            <link rel="stylesheet" href="/assets/admin/<?= $stylesheet ?>">
-        <?php endforeach ?>
+        <link rel="stylesheet" href="<?= \Ed\AssetsResource::link(array('*' => 'css')) ?>">
         <?php foreach ($config['stylesheets'] as $stylesheet): ?>
             <link rel="stylesheet" href="<?= $stylesheet ?>">
         <?php endforeach ?>
@@ -331,9 +329,7 @@
             <?php endforeach ?>
             </div>
         </div>
-        <?php foreach (explode(',', 'jquery-2.0.3.min.js,bootstrap.min.js,bootstrap-datetimepicker.min.js,bootstrap-timepicker.min.js,bootstrap-datepicker.js,select2.min.js,bootbox.min.js,main.js') as $script): ?>
-            <script src="/assets/admin/<?= $script ?>"></script>
-        <?php endforeach ?>
+        <script src="<?= \Ed\AssetsResource::link(array('*' => 'js')) ?>"></script>
         <?php foreach ($config['scripts'] as $script): ?>
             <script src="<?= $script ?>"></script>
         <?php endforeach ?>

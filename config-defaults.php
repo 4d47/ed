@@ -55,10 +55,5 @@ return
                         'prev_message' => '&laquo;',
                         'next_message' => '&raquo;'
                     ),
-            ),
-        'resources' =>
-            array(
-                'Ed\TableResource',
-                'Ed\ColumnResource',
-            ),
+            )
     );

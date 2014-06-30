@@ -16,6 +16,7 @@ so update the configs to point to your database.  To install and run, type the f
 - [Auryn](https://github.com/rdlowrey/Auryn) PHP Dependency Injection Container
 - [Stringy](http://danielstjules.github.io/Stringy) A PHP string manipulation library with multibyte support
 - [Pagerfanta](https://github.com/whiteoctober/Pagerfanta) Pagination for PHP 5.3
+- [Assetic](https://github.com/kriswallsmith/assetic) Assetic is an asset management framework for PHP
 - [jQuery](http://jquery.com) write less, do more
 - [Select2](http://ivaynberg.github.com/select2) Select boxes replacement
 - [Bootstrap](http://getbootstrap.com) Front-end framework
