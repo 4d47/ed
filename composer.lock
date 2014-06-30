@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e17fd5e21c033b86bd91f2390ccdcb4e",
+    "hash": "03a1e6265ed25473bcdc14f8d0db1eee",
     "packages": [
         {
             "name": "4d47/http-exceptions",
@@ -321,16 +321,16 @@
         },
         {
             "name": "rdlowrey/auryn",
-            "version": "v0.9.1",
+            "version": "v0.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/Auryn.git",
-                "reference": "1fe7ed319b2dfe5827597a7193c0835a4b4e3979"
+                "reference": "c83b741ccddf3b8e91f02dbdc5b0eeecbf20f09f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/Auryn/zipball/1fe7ed319b2dfe5827597a7193c0835a4b4e3979",
-                "reference": "1fe7ed319b2dfe5827597a7193c0835a4b4e3979",
+                "url": "https://api.github.com/repos/rdlowrey/Auryn/zipball/c83b741ccddf3b8e91f02dbdc5b0eeecbf20f09f",
+                "reference": "c83b741ccddf3b8e91f02dbdc5b0eeecbf20f09f",
                 "shasum": ""
             },
             "require": {
@@ -338,9 +338,9 @@
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Auryn": "src"
-                }
+                "files": [
+                    "src/bootstrap.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -357,16 +357,22 @@
                     "name": "Daniel Lowrey",
                     "email": "rdlowrey@gmail.com",
                     "role": "Creator / Main Developer"
+                },
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com",
+                    "role": "Developer"
                 }
             ],
-            "description": "Auryn is a Dependency Injection Container designed to wire together S.O.L.I.D., object-oriented PHP applications.",
+            "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
             "homepage": "https://github.com/rdlowrey/Auryn",
             "keywords": [
                 "dependency injection",
                 "dic",
                 "ioc"
             ],
-            "time": "2013-08-21 21:04:45"
+            "time": "2014-04-01 12:48:07"
         },
         {
             "name": "symfony/process",
