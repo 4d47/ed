@@ -24,9 +24,7 @@ class Model
 
     public function getTables()
     {
-        $tables = array_keys($this->schema);
-        sort($tables);
-        return $tables;
+        return array_keys($this->schema);
     }
 
 
