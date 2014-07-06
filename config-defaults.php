@@ -12,14 +12,19 @@ return
                 'username' => null,
                 'password' => null,
                 'tag' => false,
-                # Caching tag, change whenever the schema is changed, disable with `false`
-                'schema_filter' =>
-                    # Provides a way to remove tables and columns from the display
+                # Caching tag, change whenever the schema is changed,
+                # disable with `false`
+            ),
+        'filters' =>
+            array(
+                'schema' =>
+                    # Provides a way to remove tables and columns
+                    # from the display
                     function ($schema) {
-                        # unset($schema['Customer'], $schema['Employee'], $schema['Invoice'], $schema['InvoiceLine'], $schema['Track']['UnitPrice']);
+                        // unset($schema['Customer'], $schema['Employee']);
                         return $schema;
                     },
-                'select_filter' =>
+                'select' =>
                     # Provides a way to systematically apply filters to 
                     # search queries.  For example this could be used to
                     # hide disabled data to user.
@@ -27,6 +32,12 @@ return
                         // if ($table == 'Album')
                         //    $params['Title Like ?'] = '%Rock%';
                         return $params;
+                    },
+                'update' =>
+                    # Provides a way to change data before
+                    # an UPDATE OR INSERT.
+                    function ($table, $data) {
+                        return $data;
                     },
             ),
         'ui' =>

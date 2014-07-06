@@ -8,6 +8,7 @@ class Model
     private $db;
     private $schema;
     private $selectFilter;
+    private $updateFilter;
     private $maxPerPage;
     private $config;
 
@@ -15,8 +16,9 @@ class Model
     public function __construct(\PDO2 $pdo2, array $config)
     {
         $this->db = $pdo2;
-        $this->schema = $config['db']['schema_filter']( DatabaseIntrospector::introspect($this->db->pdo, $config['db']['tag']) );
-        $this->selectFilter = $config['db']['select_filter'];
+        $this->schema = $config['filters']['schema']( DatabaseIntrospector::introspect($this->db->pdo, $config['db']['tag']) );
+        $this->selectFilter = $config['filters']['select'];
+        $this->updateFilter = $config['filters']['update'];
         $this->maxPerPage = $config['ui']['max_per_page'];
         $this->config = $config['ui'];
     }
@@ -229,6 +231,7 @@ class Model
                 $return[$col] = file_get_contents($file['tmp_name']);
             }
         }
+        $return = call_user_func($this->updateFilter, $table, $return);
         return $return;
     }
 
