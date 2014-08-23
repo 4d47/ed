@@ -9,12 +9,13 @@ class AssetsResource extends Base
 {
     public static $path = '/assets/*';
     public $rest;
+    public $asset;
 
     public function get()
     {
         switch ($this->rest) {
         case 'js':
-            return $this->createAssetCollection(array(
+            $this->asset = $this->createAssetCollection(array(
                 'jquery-2.0.3.min.js',
                 'bootstrap.min.js',
                 'bootstrap-datetimepicker.min.js',
@@ -24,14 +25,16 @@ class AssetsResource extends Base
                 'bootbox.min.js',
                 'main.js',
             ));
+	    break;
         case 'css':
-            return $this->createAssetCollection(array(
+            $this->asset = $this->createAssetCollection(array(
                 'datepicker.css',
                 'bootstrap-datetimepicker.min.css',
                 'bootstrap-timepicker.min.css',
                 'select2.css',
                 'main.css'
             ));
+	    break;
         default:
             // Any other file in the assets directory
             // eg. images used in css, etc
@@ -42,16 +45,16 @@ class AssetsResource extends Base
             if (!file_exists($source)) {
                 throw new \Http\NotFound();
             }
-            return new FileAsset($source);
+            $this->asset = new FileAsset($source);
         }
     }
 
-    public function render($assets)
+    public function render()
     {
         header('Content-Type:');
             // Removes Content-Type header and let
             // the browser deal with it by context
-        echo $assets->dump();
+        echo $this->asset->dump();
     }
 
     /**

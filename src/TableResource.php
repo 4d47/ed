@@ -3,10 +3,11 @@ namespace Ed;
 
 class TableResource extends Base
 {
-    public static $path = '/(:table(/:key)(.:extension))';
+    public static $path = '/(:table(/:id)(.:extension))';
     public $table;
-    public $key;
+    public $id;
     public $extension;
+    public $data;
     private $model;
 
     public function __construct(Model $model)
@@ -17,36 +18,38 @@ class TableResource extends Base
     public function init()
     {
         if (empty($this->table)) {
-            throw new \Http\SeeOther(static::link(array('table' => current($this->model->getTables()))));
+            throw new \Http\SeeOther(static::link(current($this->model->getTables())));
         }
     }
 
     public function get()
     {
-        $result = $this->model->get($this->table, $this->key, $_GET) ?: self::notFound();
-        $result->flash = static::flash('info');
-        return $result;
+        $this->data = $this->model->get($this->table, $this->id, $_GET);
+        if (empty($this->data)) {
+            throw new \Http\NotFound();
+        }
+        $this->data->flash = static::flash('info');
     }
 
     public function post()
     {
-        if ($this->key === 'new') {
-            $this->key = $this->model->create($this->table, $_POST, $_FILES);
+        if ($this->id === 'new') {
+            $this->id = $this->model->create($this->table, $_POST, $_FILES);
             static::flash('info', "$this->table was successfully created.");
         } else {
-            $this->model->update($this->table, $this->key, $_POST, $_FILES);
+            $this->model->update($this->table, $this->id, $_POST, $_FILES);
             static::flash('info', "$this->table was successfully updated.");
         }
-        throw new \Http\SeeOther(static::link(array('table' => $this->table, 'key' => $this->key)));
+        throw new \Http\SeeOther(static::link($this->table, $this->id));
     }
 
     public function delete()
     {
-        if (empty($this->key))
+        if (empty($this->id))
             throw new \Http\NotImplemented();
-        $this->model->delete($this->table, $this->key);
+        $this->model->delete($this->table, $this->id);
         static::flash('info', "$this->table was successfully deleted.");
-        throw new \Http\SeeOther(static::link(array('table' => $this->table)));
+        throw new \Http\SeeOther(static::link($this->table));
     }
 
     /**
@@ -67,34 +70,29 @@ class TableResource extends Base
     }
 
     /**
-     * Override to support multiple formats.
+     * Overriden to support multiple formats.
      */
-    public function render($data)
+    public function render()
     {
         switch($this->extension) {
         case '':
-            parent::render($data);
+            parent::render($this->data);
             break;
         case 'html':
-            throw new \Http\MovedPermanently(static::link(array('table' => $this->table, 'key' => $this->key)));
+            throw new \Http\MovedPermanently(static::link($this->table, $this->id));
         case 'json':
             header('Content-Type: application/json');
-            unset($data->table, $data->key, $data->schema, $data->config);
+            unset($this->data->table, $this->data->id, $this->data->schema, $this->data->config);
             $options = defined('JSON_PRETTY_PRINT') ? JSON_PRETTY_PRINT : 0;
-            echo json_encode($data, $options);
+            echo json_encode($this->data, $options);
             break;
         case 'data':
             header('Content-Type: text/plain');
-            unset($data->config);
-            print_r($data);
+            unset($this->data->config);
+            print_r($this->data);
             break;
         default:
-            self::notFound();
+            throw new \Http\NotFound();
         }
-    }
-    
-    private static function notFound()
-    {
-        throw new \Http\NotFound();
     }
 }

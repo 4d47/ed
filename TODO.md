@@ -1,13 +1,14 @@
 # Ideas and stuff
 
-- Upload with URL
+- Add login, allow to connect to remote host, what ui ?
+- Fix navbar when lots of tables, make responsive etc
+- Only display search when there is pages
 - I hate __tostring, its hacky
 - Improve error pages, eg use layout
 - Config to remove CRUD rights
 - Add checkbox (rounded) in listing to allow multiple delete/edit
 - Understand `modified_at`/`created_at` kind of fields for getLastModified
 - Add a 's' shortcut that focus to search box
-- Make nav responsive
 - CSS print media type
 - // elseif name match: password, month, week, email, url, tel, color
 - Support for SET, BINARY and other datatypes

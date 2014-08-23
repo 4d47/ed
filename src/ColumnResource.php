@@ -7,6 +7,7 @@ class ColumnResource extends Base
     public $table;
     public $id;
     public $column;
+    public $data;
     private $model;
 
     public function __construct(Model $model)
@@ -16,15 +17,15 @@ class ColumnResource extends Base
 
     public function get()
     {
-        return $this->model->fetchColumn($this->table, $this->id, $this->column);
+        $this->data = $this->model->fetchColumn($this->table, $this->id, $this->column);
     }
 
-    public function render($data)
+    public function render()
     {
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        header('Content-Type: ' . finfo_buffer($finfo, $data));
-        header('Content-Length: ' . strlen($data));
+        header('Content-Type: ' . finfo_buffer($finfo, $this->data));
+        header('Content-Length: ' . strlen($this->data));
         finfo_close($finfo);
-        echo $data;
+        echo $this->data;
     }
 }

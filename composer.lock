@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "03a1e6265ed25473bcdc14f8d0db1eee",
+    "hash": "560b1f0e1a42b3947412abb7d4f4a50c",
     "packages": [
         {
             "name": "4d47/http-exceptions",
@@ -37,16 +37,16 @@
         },
         {
             "name": "4d47/http-resource",
-            "version": "v2.1.0",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/4d47/php-http-resource.git",
-                "reference": "78a5fb6b7167171ba16b7da85fe3810b699df024"
+                "reference": "ef92fc2faaa104d34d1c41b4d2bbd49fe416dce1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/78a5fb6b7167171ba16b7da85fe3810b699df024",
-                "reference": "78a5fb6b7167171ba16b7da85fe3810b699df024",
+                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/ef92fc2faaa104d34d1c41b4d2bbd49fe416dce1",
+                "reference": "ef92fc2faaa104d34d1c41b4d2bbd49fe416dce1",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
                 "MIT"
             ],
             "description": "http resource",
-            "time": "2014-06-30 10:35:01"
+            "time": "2014-08-21 02:38:17"
         },
         {
             "name": "4d47/pdo2",
@@ -128,16 +128,16 @@
         },
         {
             "name": "danielstjules/stringy",
-            "version": "1.5.1",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/danielstjules/Stringy.git",
-                "reference": "7600549abc0261f469445c89e47ee63aff3b32f8"
+                "reference": "63ad4d238fab6f2069fb30d6734c7e44bd77a6d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/7600549abc0261f469445c89e47ee63aff3b32f8",
-                "reference": "7600549abc0261f469445c89e47ee63aff3b32f8",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/63ad4d238fab6f2069fb30d6734c7e44bd77a6d2",
+                "reference": "63ad4d238fab6f2069fb30d6734c7e44bd77a6d2",
                 "shasum": ""
             },
             "require": {
@@ -179,7 +179,7 @@
                 "utility",
                 "utils"
             ],
-            "time": "2014-04-19 15:03:05"
+            "time": "2014-07-09 17:13:57"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -321,26 +321,29 @@
         },
         {
             "name": "rdlowrey/auryn",
-            "version": "v0.13.0",
+            "version": "v0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/Auryn.git",
-                "reference": "c83b741ccddf3b8e91f02dbdc5b0eeecbf20f09f"
+                "reference": "4a30ef91f159d81b6cf1f130fc4db12c8f185040"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/Auryn/zipball/c83b741ccddf3b8e91f02dbdc5b0eeecbf20f09f",
-                "reference": "c83b741ccddf3b8e91f02dbdc5b0eeecbf20f09f",
+                "url": "https://api.github.com/repos/rdlowrey/Auryn/zipball/4a30ef91f159d81b6cf1f130fc4db12c8f185040",
+                "reference": "4a30ef91f159d81b6cf1f130fc4db12c8f185040",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
+            "require-dev": {
+                "phpunit/phpunit": "4.0.*"
+            },
             "type": "library",
             "autoload": {
-                "files": [
-                    "src/bootstrap.php"
-                ]
+                "psr-4": {
+                    "Auryn\\": "lib/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -348,9 +351,9 @@
             ],
             "authors": [
                 {
-                    "name": "Levi Morrison",
-                    "email": "levim@php.net",
-                    "homepage": "http://morrisonlevi.github.com/",
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com",
                     "role": "Developer"
                 },
                 {
@@ -359,9 +362,9 @@
                     "role": "Creator / Main Developer"
                 },
                 {
-                    "name": "Dan Ackroyd",
-                    "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com",
+                    "name": "Levi Morrison",
+                    "email": "levim@php.net",
+                    "homepage": "http://morrisonlevi.github.com/",
                     "role": "Developer"
                 }
             ],
@@ -372,21 +375,21 @@
                 "dic",
                 "ioc"
             ],
-            "time": "2014-04-01 12:48:07"
+            "time": "2014-08-11 13:28:33"
         },
         {
             "name": "symfony/process",
-            "version": "v2.5.0",
+            "version": "v2.5.3",
             "target-dir": "Symfony/Component/Process",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "5d7d78e23894544740219e006320678cfa4cd45b"
+                "reference": "e0997d2a9a1a763484b34b989900b61322a9b056"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/5d7d78e23894544740219e006320678cfa4cd45b",
-                "reference": "5d7d78e23894544740219e006320678cfa4cd45b",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/e0997d2a9a1a763484b34b989900b61322a9b056",
+                "reference": "e0997d2a9a1a763484b34b989900b61322a9b056",
                 "shasum": ""
             },
             "require": {
@@ -409,19 +412,17 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2014-05-23 09:02:52"
+            "time": "2014-08-05 09:00:40"
         }
     ],
     "packages-dev": [
@@ -793,17 +794,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.5.0",
+            "version": "v2.5.3",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "b4b09c68ec2f2727574544ef0173684281a5033c"
+                "reference": "5a75366ae9ca8b4792cd0083e4ca4dff9fe96f1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/b4b09c68ec2f2727574544ef0173684281a5033c",
-                "reference": "b4b09c68ec2f2727574544ef0173684281a5033c",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/5a75366ae9ca8b4792cd0083e4ca4dff9fe96f1f",
+                "reference": "5a75366ae9ca8b4792cd0083e4ca4dff9fe96f1f",
                 "shasum": ""
             },
             "require": {
@@ -826,28 +827,27 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-05-16 14:25:18"
+            "time": "2014-08-05 09:00:40"
         }
     ],
     "aliases": [
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "4d47/http-resource": 20
+    },
+    "prefer-stable": false,
     "platform": {
         "php": ">= 5.4.0"
     },
