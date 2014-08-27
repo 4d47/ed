@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?= $table ?></title>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="<?= \Ed\AssetsResource::link('css') ?>">
         <?php foreach ($data->config['stylesheets'] as $stylesheet): ?>
             <link rel="stylesheet" href="<?= $stylesheet ?>">
@@ -201,27 +201,29 @@
                                         </a>
                                     </div>
 
-                                    <form action="#<?= $tbl ?>" method="get" class="navbar-form navbar-right" role="search" style="padding:0;">
-                                        <?php foreach ($_GET as $name => $value): ?>
-                                            <?= tag::input(array('type' => 'hidden', 'name' => $name, 'value' => $value)); ?>
-                                        <?php endforeach ?>
-                                        <div class="input-group">
-                                            <?= tag::input(array('type' => 'text', 'name' => "$tbl-search", 'class' => 'form-control input-sm', 'placeholder' => 'Search', 'value' => isset($_GET["$tbl-search"]) ? $_GET["$tbl-search"] : '')) ?>
-                                            <span class="input-group-btn">
-                                                <button type="submit" class="btn btn-default input-sm">
-                                                    <span class="glyphicon glyphicon-search"></span>
-                                                    <span class="sr-only">Search</span>
-                                                </button>
+                                    <?php if ($infos->pages > 1): ?>
+                                        <form action="#<?= $tbl ?>" method="get" class="navbar-form navbar-right" role="search" style="padding:0;">
+                                            <?php foreach ($_GET as $name => $value): ?>
+                                                <?= tag::input(array('type' => 'hidden', 'name' => $name, 'value' => $value)); ?>
+                                            <?php endforeach ?>
+                                            <div class="input-group">
+                                                <?= tag::input(array('type' => 'text', 'name' => "$tbl-search", 'class' => 'form-control input-sm', 'placeholder' => 'Search', 'value' => isset($_GET["$tbl-search"]) ? $_GET["$tbl-search"] : '')) ?>
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-default input-sm">
+                                                        <span class="glyphicon glyphicon-search"></span>
+                                                        <span class="sr-only">Search</span>
+                                                    </button>
 
-                                                <?php if (!empty($_GET["$tbl-search"])): ?>
-                                                <button type="submit" class="close" style="float:none;margin-left:0.3em;"
-                                                    onclick="$('input[name=<?= "$tbl-search" ?>]').val('')">
-                                                    &times;
-                                                </button>
-                                                <?php endif ?>
-                                            </span>
-                                        </div>
-                                    </form>
+                                                    <?php if (!empty($_GET["$tbl-search"])): ?>
+                                                    <button type="submit" class="close" style="float:none;margin-left:0.3em;"
+                                                        onclick="$('input[name=<?= "$tbl-search" ?>]').val('')">
+                                                        &times;
+                                                    </button>
+                                                    <?php endif ?>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    <?php endif ?>
                                 </td>
                             </tr>
                             <tr>

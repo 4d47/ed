@@ -2,7 +2,6 @@
 
 - Add login, allow to connect to remote host, what ui ?
 - Fix navbar when lots of tables, make responsive etc
-- Only display search when there is pages
 - I hate __tostring, its hacky
 - Improve error pages, eg use layout
 - Config to remove CRUD rights
