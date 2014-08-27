@@ -35,10 +35,10 @@ class TableResource extends Base
     {
         if ($this->id === 'new') {
             $this->id = $this->model->create($this->table, $_POST, $_FILES);
-            static::flash('info', "$this->table was successfully created.");
+            static::flash('info', sprintf(_("%s was successfully created."), $this->table));
         } else {
             $this->model->update($this->table, $this->id, $_POST, $_FILES);
-            static::flash('info', "$this->table was successfully updated.");
+            static::flash('info', sprintf(_("%s was successfully updated."), $this->table));
         }
         throw new \Http\SeeOther(static::link($this->table, $this->id));
     }
@@ -48,7 +48,7 @@ class TableResource extends Base
         if (empty($this->id))
             throw new \Http\NotImplemented();
         $this->model->delete($this->table, $this->id);
-        static::flash('info', "$this->table was successfully deleted.");
+        static::flash('info', sprintf(_("%s was successfully deleted."), $this->table));
         throw new \Http\SeeOther(static::link($this->table));
     }
 

@@ -24,7 +24,7 @@
                         </li>
                         <?php if ($tbl == $table): ?>
                         <li>
-                            <a href="<?= static::link($tbl, 'new') ?>" title="New <?= $data->config['labelize']($tbl) ?>">+</a>
+                            <a href="<?= static::link($tbl, 'new') ?>" title="<?= _('New') ?> <?= $data->config['labelize']($tbl) ?>">+</a>
                         </li>
                         <?php endif ?>
                         <?php endforeach ?>
