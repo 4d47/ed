@@ -4,9 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?= $table ?></title>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="<?= \Ed\AssetsResource::link('css') ?>">
+        <link rel="stylesheet" href="<?= \Ed\AssetsResource::link('css/ed.css') ?>">
         <?php foreach ($data->config['stylesheets'] as $stylesheet): ?>
             <link rel="stylesheet" href="<?= $stylesheet ?>">
         <?php endforeach ?>
@@ -17,16 +15,18 @@
                 <div class="container">
                     <a class="navbar-brand" href="<?= static::link() ?>">
                         <span class="glyphicon glyphicon-leaf"></span>
-                        <span class="sr-only">/admin</span>
+                        <span class="sr-only"><?= static::link() ?></span>
                     </a>
                     <ul class="nav navbar-nav">
                         <?php foreach (array_keys($data->schema) as $tbl): ?>
                         <li class="<?= ($tbl === $table) ? 'active' : '' ?>">
                             <a href="<?= static::link($tbl) ?>"><?= $data->config['labelize']($tbl) ?></a>
                         </li>
+                        <?php if ($tbl == $table): ?>
                         <li>
-                            <a href="<?= static::link($tbl, 'new') ?>" title="new record to <?= $data->config['labelize']($tbl) ?>">+</a>
+                            <a href="<?= static::link($tbl, 'new') ?>" title="New <?= $data->config['labelize']($tbl) ?>">+</a>
                         </li>
+                        <?php endif ?>
                         <?php endforeach ?>
                     </ul>
                 </div>
@@ -55,11 +55,11 @@
                         <?php endif ?>
 
                         <?php
-                        if (!empty($attr['auto'])) {
-                            if ($id != 'new') {
+                        if (!empty($attr['auto'])):
+                            if ($id != 'new'):
                                 echo tag::input(array('type' => 'text', 'id' => $column, 'name' => $column, 'class' => 'form-control', 'disabled' => true, 'value' => @$data->row->$column));
-                            }
-                        } else if (isset($data->schema[ $table ][$column]['ref'])) {
+                            endif;
+                        elseif (isset($data->schema[ $table ][$column]['ref'])):
                             # if is new, try to see if associated record was passed
                             # in the querystring .. only work with association per table now
                             $assoc_table = $data->schema[ $table ][$column]['ref']['table'];
@@ -70,14 +70,14 @@
                             echo tag::br();
                             echo tag::input(array('type' => 'text', 'class' => 'ref', 'name' => $column, 'data-table' => $assoc_table, 'value' => $value, 'required' => empty($attr['null'])));
 
-                            if ($id != 'new') {
+                            if ($id != 'new'):
                                 // add a little goto link
                                 echo ' ';
                                 echo tag::a(array('href' => static::link($data->schema[ $table ][$column]['ref']['table'], $data->row->$column)), new tag('<span class="glyphicon glyphicon-chevron-right"></span>'));
-                            }
-                        } else if ($attr['type'] === 'text') {
+                            endif;
+                        elseif ($attr['type'] === 'text'):
                             echo tag::textarea(array('id' => $column, 'name' => $column, 'class' => 'form-control', 'required' => empty($attr['null'])), @$data->row->$column);
-                        } else if ($attr['type'] == 'boolean') {
+                        elseif ($attr['type'] == 'boolean'):
                             echo tag::br();
                             echo tag::div(array('class' => 'btn-group', 'data-toggle' => 'buttons'),
                                 tag::label(array('class' => 'btn btn-default' . (@$data->row->$column ? ' active' : '')),
@@ -89,24 +89,24 @@
                                     'No'
                                 )
                             );
-                        } else if ($attr['type'] === 'integer') {
+                        elseif ($attr['type'] === 'integer'):
                             echo tag::input(array('type' => 'number', 'id' => $column, 'name' => $column, 'class' => 'form-control', 'value' => @$data->row->$column, 'required' => empty($attr['null'])));
-                        } else if ($attr['type'] === 'numeric') {
+                        elseif ($attr['type'] === 'numeric'):
                             echo tag::input(array('type' => 'number', 'step' => 'any', 'id' => $column, 'name' => $column, 'class' => 'form-control', 'value' => @$data->row->$column, 'required' => empty($attr['null'])));
-                        } else if ($attr['type'] == 'date') {
+                        elseif ($attr['type'] == 'date'):
                             echo tag::input(array('type' => 'date', 'id' => $column, 'name' => $column, 'class' => 'form-control', 'data-date-format' => 'yyyy-mm-dd', 'value' => @$data->row->$column, 'required' => empty($attr['null'])));
-                        } else if ($attr['type'] == 'time') {
+                        elseif ($attr['type'] == 'time'):
                             echo tag::input(array('type' => 'time', 'id' => $column, 'name' => $column, 'class' => 'form-control', 'value' => @$data->row->$column, 'required' => empty($attr['null'])));
-                        } else if ($attr['type'] == 'datetime') {
+                        elseif ($attr['type'] == 'datetime'):
                             echo tag::input(array('type' => 'datetime', 'id' => $column, 'name' => $column, 'class' => 'form-control', 'data-date-format' => 'yyyy-mm-dd hh:ii:ss', 'value' => @$data->row->$column, 'required' => empty($attr['null'])));
-                        } else if ($attr['type'] == 'enum') {
+                        elseif ($attr['type'] == 'enum'):
                             echo tag::br();
                             echo tag::begin_select(array('id' => $column, 'name' => $column, 'class' => 'enum', 'required' => empty($attr['null'])));
-                            foreach ($attr['precision'] as $option) {
+                            foreach ($attr['precision'] as $option):
                                 echo tag::option(array('selected' => @$data->row->$column == $option), $option);
-                            }
+                            endforeach;
                             echo tag::end_select();
-                        } else if ($attr['type'] == 'blob') {
+                        elseif ($attr['type'] == 'blob'):
                             echo tag::div(array('class' => 'file'),
                                 tag::a(array('class' => 'btn btn-default'),
                                     'Browse...',
@@ -118,31 +118,31 @@
                                         : ''
                                 )
                             );
-                        } else {
+                        else:
                             $options = array('type' => 'text', 'id' => $column, 'name' => $column, 'value' => @$data->row->$column, 'class' => 'form-control ' . $attr['type'], 'required' => empty($attr['null']));
-                            if (!empty($attr['precision'])) {
+                            if (!empty($attr['precision'])):
                                 $options['maxlength'] = $attr['precision'];
-                                if ($attr['precision'] < 20) { # 20 is just whats close to browser defaults
+                                if ($attr['precision'] < 20): # 20 is just whats close to browser defaults
                                     $options['size'] = $attr['precision'] + 1;
-                                }
-                            }
+                                endif;
+                            endif;
                             $input = tag::input($options);
-                            if ($id != 'new') {
+                            if ($id != 'new'):
                                 $v = $data->row->$column;
-                                if (filter_var($v, FILTER_VALIDATE_URL)) {
+                                if (filter_var($v, FILTER_VALIDATE_URL)):
                                     $input = tag::div(array('class' => 'input-group'),
                                         tag::a(array('href' => $v, 'target' => '_blank', 'class' => 'input-group-addon'), tag::span(array('class' => 'glyphicon glyphicon-chevron-right'))),
                                         $input
                                     );
-                                } else if (filter_var($v, FILTER_VALIDATE_EMAIL)) {
+                                elseif (filter_var($v, FILTER_VALIDATE_EMAIL)):
                                     $input = tag::div(array('class' => 'input-group'),
                                         tag::a(array('href' => "mailto:$v", 'class' => 'input-group-addon'), tag::span(array('class' => 'glyphicon'), '@')),
                                         $input
                                     );
-                                }
-                            }
+                                endif;
+                            endif;
                             echo $input;
-                        }
+                        endif;
                         ?>
                     </div>
                     <?php endforeach ?>
@@ -177,11 +177,11 @@
                                     <?php
                                     // autoselect association with this record
                                     $query = array();
-                                    foreach ($data->schema[$tbl] as $name => $column) {
-                                        if (isset($column['ref']['table']) && $column['ref']['table'] == $table) {
+                                    foreach ($data->schema[$tbl] as $name => $column):
+                                        if (isset($column['ref']['table']) && $column['ref']['table'] == $table):
                                             $query[$name] = $id;
-                                        }
-                                    }
+                                        endif;
+                                    endforeach;
                                     $query = $query ? '?' . http_build_query($query) : '';
                                     ?>
 
@@ -189,10 +189,14 @@
                                     <div class="pull-left" style="margin:12px 0;">
                                         <span style="color:gray;">
                                             <?php $offset = (($infos->page - 1) * $infos->limit) + 1 ?>
-                                            <?= $data->config['labelize']($tbl) ?>
+                                            <?php 
+                                            if ($table != $tbl):
+                                                echo $data->config['labelize']($tbl);
+                                            endif;
+                                            ?>
                                             <b><?= $offset ?></b>-<b><?= ($offset - 1) + count($infos->results) ?></b>
                                             <?php if (count($infos->results) != $infos->total): ?>
-                                                / <b><?= $infos->total ?></b> in total
+                                                / <b><?= $infos->total ?></b> <?= _('total') ?>
                                             <?php endif ?>
                                         </span>
                                         <a href="<?= static::link($tbl, 'new') . $query ?>" style="padding-left:1em;">
@@ -201,8 +205,8 @@
                                         </a>
                                     </div>
 
-                                    <?php if ($infos->pages > 1): ?>
-                                        <form action="#<?= $tbl ?>" method="get" class="navbar-form navbar-right" role="search" style="padding:0;">
+                                    <?php if ($infos->pages > 1 || !empty($_GET["$tbl-search"])): ?>
+                                        <form action="#<?= $table == $tbl ? '' : "#$tbl" ?>" method="get" class="navbar-form navbar-right" role="search" style="padding:0;">
                                             <?php foreach ($_GET as $name => $value): ?>
                                                 <?= tag::input(array('type' => 'hidden', 'name' => $name, 'value' => $value)); ?>
                                             <?php endforeach ?>
@@ -211,11 +215,11 @@
                                                 <span class="input-group-btn">
                                                     <button type="submit" class="btn btn-default input-sm">
                                                         <span class="glyphicon glyphicon-search"></span>
-                                                        <span class="sr-only">Search</span>
+                                                        <span class="sr-only"><?= _('Search') ?></span>
                                                     </button>
 
                                                     <?php if (!empty($_GET["$tbl-search"])): ?>
-                                                    <button type="submit" class="close" style="float:none;margin-left:0.3em;"
+                                                    <button type="submit" class="close" style="position:absolute;left:-20px;top:3px;z-index:10;"
                                                         onclick="$('input[name=<?= "$tbl-search" ?>]').val('')">
                                                         &times;
                                                     </button>
@@ -237,9 +241,9 @@
                                             data-placement="bottom"
                                             data-content="
                                                 <?php
-                                                foreach ($infos->aggregates[$name] as $f => $value) {
+                                                foreach ($infos->aggregates[$name] as $f => $value):
                                                     echo "$f: $value<br>";
-                                                }
+                                                endforeach;
                                                 ?>
                                             ">
                                             <span class="glyphicon glyphicon-info-sign"></span>
@@ -248,18 +252,18 @@
                                     <?php
                                     $icon = '';
                                     $dir = '';
-                                    if (empty($_GET["$tbl-sort"])) {
-                                        if (!empty($data->schema[$tbl][$name]['pk'])) {
+                                    if (empty($_GET["$tbl-sort"])):
+                                        if (!empty($data->schema[$tbl][$name]['pk'])):
                                             $icon = tag::span(array('class' => 'glyphicon glyphicon-chevron-down'));
                                             $dir = '-';
-                                        }
-                                    } else if ($_GET["$tbl-sort"] === $name) {
+                                        endif;
+                                    elseif ($_GET["$tbl-sort"] === $name):
                                         $icon = tag::span(array('class' => 'glyphicon glyphicon-chevron-down'));
                                         $dir = '-';
-                                    } else if ($_GET["$tbl-sort"] === "-$name") {
+                                    elseif ($_GET["$tbl-sort"] === "-$name"):
                                         $icon = tag::span(array('class' => 'glyphicon glyphicon-chevron-up'));
                                         $dir = '';
-                                    }
+                                    endif;
 
                                     ?>
                                     <a href="?<?= http_build_query(array("$tbl-sort" => "$dir$name") + $_GET) ?>">
@@ -292,38 +296,38 @@
                         <?php endif ?>
                         <tbody>
                             <?php
-                            if (count($infos->results) == 0) {
+                            if (count($infos->results) == 0):
                                 echo tag::tr(
                                     tag::td(array('colspan' => count($data->schema[$tbl])), tag::b(_('No results')))
                                 );
-                            } else {
+                            else:
                                 $pk = key(array_filter($data->schema[$tbl], function($el) { return !empty($el['pk']); }));
                                 $df = $pk;
-                                foreach ($infos->results as $obj) {
+                                foreach ($infos->results as $obj):
                                     echo '<tr>';
-                                    foreach ($data->schema[$tbl] as $name => $col) {
+                                    foreach ($data->schema[$tbl] as $name => $col):
                                         $value = $obj->$name;
-                                        if (!empty($col['pk'])) {
+                                        if (!empty($col['pk'])):
                                             $label = !empty($col['auto']) ? "#$value" : $value;
                                             $content = tag::a(array('href' => static::link($tbl, $value)), $label);
-                                        } else if (!empty($col['ref'])) {
+                                        elseif (!empty($col['ref'])):
                                             $label = ($value && !empty($data->schema[$col['ref']['table']][$col['ref']['column']])) ? "#$value" : $value;
                                             $content = tag::a(array('href' => static::link($col['ref']['table'], $value)), $label);
-                                        } else {
-                                            if (in_array($data->schema[$tbl][$name]['type'], array('boolean', 'blob'))) {
+                                        else:
+                                            if (in_array($data->schema[$tbl][$name]['type'], array('boolean', 'blob'))):
                                                 $content = tag::code($obj->$name ? _('yes') : _('no'));
-                                            } else {
+                                            else:
                                                 $args = strlen($value) > 20
                                                     ? array('title' => \Stringy\StaticStringy::truncate($value, 500, '...'))
                                                     : array();
                                                 $content = tag::span($args, \Stringy\StaticStringy::truncate($value, 20, '...'));
-                                            }
-                                        }
+                                            endif;
+                                        endif;
                                         echo tag::td($content);
-                                    }
+                                    endforeach;
                                     echo '</tr>';
-                                }
-                            }
+                                endforeach;
+                            endif;
                             ?>
                         </tbody>
                     </table>
@@ -331,7 +335,7 @@
             <?php endforeach ?>
             </div>
         </div>
-        <script src="<?= \Ed\AssetsResource::link('js') ?>"></script>
+        <script src="<?= \Ed\AssetsResource::link('js/ed.js') ?>"></script>
         <?php foreach ($data->config['scripts'] as $script): ?>
             <script src="<?= $script ?>"></script>
         <?php endforeach ?>

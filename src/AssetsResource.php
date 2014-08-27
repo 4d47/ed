@@ -3,7 +3,6 @@ namespace Ed;
 
 use Assetic\Asset\AssetCollection;
 use Assetic\Asset\FileAsset;
-use Assetic\Asset\AssetInterface;
 
 class AssetsResource extends Base
 {
@@ -14,7 +13,7 @@ class AssetsResource extends Base
     public function get()
     {
         switch ($this->rest) {
-        case 'js':
+        case 'js/ed.js':
             $this->asset = $this->createAssetCollection(array(
                 'jquery-2.0.3.min.js',
                 'bootstrap.min.js',
@@ -25,16 +24,18 @@ class AssetsResource extends Base
                 'bootbox.min.js',
                 'main.js',
             ));
-	    break;
-        case 'css':
+        break;
+        case 'css/ed.css':
             $this->asset = $this->createAssetCollection(array(
+                'bootstrap.min.css',
+                'bootstrap-theme.min.css',
                 'datepicker.css',
                 'bootstrap-datetimepicker.min.css',
                 'bootstrap-timepicker.min.css',
                 'select2.css',
                 'main.css'
             ));
-	    break;
+        break;
         default:
             // Any other file in the assets directory
             // eg. images used in css, etc
