@@ -3,7 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><?= $table ?></title>
+        <title>
+            <?= $table ?>
+            <?php
+            if ($data->row):
+                echo $data->row->__tostring;
+            endif;
+            ?>
+        </title>
         <link rel="stylesheet" href="<?= \Ed\AssetsResource::link('css/ed.css') ?>">
         <?php foreach ($data->config['stylesheets'] as $stylesheet): ?>
             <link rel="stylesheet" href="<?= $stylesheet ?>">
