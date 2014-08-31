@@ -18,6 +18,9 @@ class ColumnResource extends Base
     public function get()
     {
         $this->data = $this->model->fetchColumn($this->table, $this->id, $this->column);
+        if (empty($this->data)) {
+            throw new \Http\NotFound();
+        }
     }
 
     public function render()
