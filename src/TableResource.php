@@ -76,7 +76,7 @@ class TableResource extends Base
     {
         switch($this->extension) {
         case '':
-            parent::render($this->data);
+            parent::render();
             break;
         case 'html':
             throw new \Http\MovedPermanently(static::link($this->table, $this->id));
