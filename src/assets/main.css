@@ -14,3 +14,9 @@ th span.glyphicon-chevron-up, th span.glyphicon-chevron-down { color:#c0c0c0; }
 .file { position:relative; }
 input[type="file"] { position:absolute; z-index:2; top:0; left:0; filter: alpha(opacity=0); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; opacity:0; background-color:transparent; color:transparent; }
 .upload-file-info { position:relative; z-index:3; padding-left:0.5em; }
+
+/* turn off selector path in tinymce */
+.mce-path { display: none !important; }
+.mce-statusbar { border-width: 0 !important; }
+/* and make sure the navbar goes behind tinymce fullscreen */
+.navbar-fixed-top { z-index: 10 !important; }

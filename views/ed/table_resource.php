@@ -343,6 +343,8 @@
             </div>
         </div>
         <script src="<?= \Ed\AssetsResource::link('js/ed.js') ?>"></script>
+
+        <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
         <?php foreach ($data->config['scripts'] as $script): ?>
             <script src="<?= $script ?>"></script>
         <?php endforeach ?>
