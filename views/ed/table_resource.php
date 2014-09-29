@@ -324,7 +324,7 @@
                                             if (in_array($data->schema[$tbl][$name]['type'], array('boolean', 'blob'))):
                                                 $content = tag::code($obj->$name ? _('yes') : _('no'));
                                             else:
-                                                $args = strlen($value) > 20
+                                                $args = mb_strlen($value) > 20
                                                     ? array('title' => \Stringy\StaticStringy::truncate($value, 500, '...'))
                                                     : array();
                                                 $content = tag::span($args, \Stringy\StaticStringy::truncate($value, 20, '...'));

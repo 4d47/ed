@@ -14,6 +14,9 @@ session_start();
 # load configs
 $config = array_replace_recursive(require 'config-defaults.php', file_exists('config.php') ? require 'config.php' : array());
 
+# UTF-8 everywhere
+mb_internal_encoding('UTF-8');
+
 # wireup dependencies
 $injector = new Auryn\Provider();
 $injector->define('Ed\Model', array(':config' => $config));

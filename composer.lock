@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "560b1f0e1a42b3947412abb7d4f4a50c",
+    "hash": "5bb54586177bf308f817332dba065af4",
     "packages": [
         {
             "name": "4d47/http-exceptions",
@@ -37,16 +37,16 @@
         },
         {
             "name": "4d47/http-resource",
-            "version": "3.x-dev",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/4d47/php-http-resource.git",
-                "reference": "ef92fc2faaa104d34d1c41b4d2bbd49fe416dce1"
+                "reference": "3948a231886ab81f67200b415af3fbd6a6a95382"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/ef92fc2faaa104d34d1c41b4d2bbd49fe416dce1",
-                "reference": "ef92fc2faaa104d34d1c41b4d2bbd49fe416dce1",
+                "url": "https://api.github.com/repos/4d47/php-http-resource/zipball/3948a231886ab81f67200b415af3fbd6a6a95382",
+                "reference": "3948a231886ab81f67200b415af3fbd6a6a95382",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,37 @@
                 "MIT"
             ],
             "description": "http resource",
-            "time": "2014-08-21 02:38:17"
+            "time": "2014-09-05 17:22:10"
+        },
+        {
+            "name": "4d47/missing-builtins",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/4d47/php-missing-builtins.git",
+                "reference": "bb3812d73d7b72ef507fe5afff5bb564621dc273"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/4d47/php-missing-builtins/zipball/bb3812d73d7b72ef507fe5afff5bb564621dc273",
+                "reference": "bb3812d73d7b72ef507fe5afff5bb564621dc273",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "missing-builtins.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A random bag of PHP functions I dare to wish was builtin.",
+            "time": "2014-09-29 01:37:51"
         },
         {
             "name": "4d47/pdo2",
@@ -128,16 +158,16 @@
         },
         {
             "name": "danielstjules/stringy",
-            "version": "1.5.2",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/danielstjules/Stringy.git",
-                "reference": "63ad4d238fab6f2069fb30d6734c7e44bd77a6d2"
+                "reference": "7e91d1ead2dc399a53c0dd0d9be8a2f41db7dbe7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/63ad4d238fab6f2069fb30d6734c7e44bd77a6d2",
-                "reference": "63ad4d238fab6f2069fb30d6734c7e44bd77a6d2",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/7e91d1ead2dc399a53c0dd0d9be8a2f41db7dbe7",
+                "reference": "7e91d1ead2dc399a53c0dd0d9be8a2f41db7dbe7",
                 "shasum": ""
             },
             "require": {
@@ -179,7 +209,7 @@
                 "utility",
                 "utils"
             ],
-            "time": "2014-07-09 17:13:57"
+            "time": "2014-09-14 17:58:46"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -379,17 +409,17 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.5.3",
+            "version": "v2.5.5",
             "target-dir": "Symfony/Component/Process",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "e0997d2a9a1a763484b34b989900b61322a9b056"
+                "reference": "8a1ec96c4e519cee0fb971ea48a1eb7369dda54b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/e0997d2a9a1a763484b34b989900b61322a9b056",
-                "reference": "e0997d2a9a1a763484b34b989900b61322a9b056",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/8a1ec96c4e519cee0fb971ea48a1eb7369dda54b",
+                "reference": "8a1ec96c4e519cee0fb971ea48a1eb7369dda54b",
                 "shasum": ""
             },
             "require": {
@@ -422,29 +452,29 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2014-08-05 09:00:40"
+            "time": "2014-09-23 05:25:11"
         }
     ],
     "packages-dev": [
         {
             "name": "phpunit/php-code-coverage",
-            "version": "1.2.17",
+            "version": "1.2.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "6ef2bf3a1c47eca07ea95f0d8a902a6340390b34"
+                "reference": "fe2466802556d3fe4e4d1d58ffd3ccfd0a19be0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6ef2bf3a1c47eca07ea95f0d8a902a6340390b34",
-                "reference": "6ef2bf3a1c47eca07ea95f0d8a902a6340390b34",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/fe2466802556d3fe4e4d1d58ffd3ccfd0a19be0b",
+                "reference": "fe2466802556d3fe4e4d1d58ffd3ccfd0a19be0b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "phpunit/php-file-iterator": ">=1.3.0@stable",
                 "phpunit/php-text-template": ">=1.2.0@stable",
-                "phpunit/php-token-stream": ">=1.1.3@stable"
+                "phpunit/php-token-stream": ">=1.1.3,<1.3.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "3.7.*@dev"
@@ -485,7 +515,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-03-28 10:53:45"
+            "time": "2014-09-02 10:13:14"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -794,17 +824,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.5.3",
+            "version": "v2.5.5",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "5a75366ae9ca8b4792cd0083e4ca4dff9fe96f1f"
+                "reference": "b1dbc53593b98c2d694ebf383660ac9134d30b96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/5a75366ae9ca8b4792cd0083e4ca4dff9fe96f1f",
-                "reference": "5a75366ae9ca8b4792cd0083e4ca4dff9fe96f1f",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/b1dbc53593b98c2d694ebf383660ac9134d30b96",
+                "reference": "b1dbc53593b98c2d694ebf383660ac9134d30b96",
                 "shasum": ""
             },
             "require": {
@@ -837,7 +867,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-08-05 09:00:40"
+            "time": "2014-09-22 09:14:18"
         }
     ],
     "aliases": [
@@ -845,7 +875,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "4d47/http-resource": 20
+        "4d47/missing-builtins": 20
     },
     "prefer-stable": false,
     "platform": {

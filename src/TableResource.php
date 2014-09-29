@@ -28,19 +28,21 @@ class TableResource extends Base
         if (empty($this->data)) {
             throw new \Http\NotFound();
         }
-        $this->data->flash = static::flash('info');
+        session_flash('referer', array_get($_SERVER, 'HTTP_REFERER'));
+        $this->data->flash = session_flash('info');
     }
 
     public function post()
     {
         if ($this->id === 'new') {
             $this->id = $this->model->create($this->table, $_POST, $_FILES);
-            static::flash('info', sprintf(_("%s was successfully created."), $this->table));
+            session_flash('info', sprintf(_("%s was successfully created."), $this->table));
         } else {
             $this->model->update($this->table, $this->id, $_POST, $_FILES);
-            static::flash('info', sprintf(_("%s was successfully updated."), $this->table));
+            session_flash('info', sprintf(_("%s was successfully updated."), $this->table));
         }
-        throw new \Http\SeeOther(static::link($this->table, $this->id));
+        $url = session_flash('referer') ?: static::link($this->table, $this->id);
+        throw new \Http\SeeOther($url);
     }
 
     public function delete()
@@ -48,25 +50,8 @@ class TableResource extends Base
         if (empty($this->id))
             throw new \Http\NotImplemented();
         $this->model->delete($this->table, $this->id);
-        static::flash('info', sprintf(_("%s was successfully deleted."), $this->table));
+        session_flash('info', sprintf(_("%s was successfully deleted."), $this->table));
         throw new \Http\SeeOther(static::link($this->table));
-    }
-
-    /**
-     * Record $name $message to the session and get it back,
-     * only once. Requires a session_start()ed.
-     *
-     * @param string $name
-     * @param mixed $message
-     */
-    protected static function flash($name, $message = null)
-    {
-        if (is_null($message)) {
-            $message = isset($_SESSION[$name]) ? $_SESSION[$name] : '';
-            unset($_SESSION[$name]);
-            return $message;
-        }
-        return $_SESSION[$name] = $message;
     }
 
     /**

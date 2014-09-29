@@ -16,9 +16,10 @@
         "danielstjules/stringy": "~1.5",
         "pagerfanta/pagerfanta": "~1.0",
         "kriswallsmith/assetic": "~1.1",
-        "4d47/http-resource": "3.x-dev",
+        "4d47/http-resource": "~3.0",
         "4d47/pdo2": "~1.0",
-        "4d47/tag": "~2.0"
+        "4d47/tag": "~2.0",
+        "4d47/missing-builtins": "dev-master"
     },
     "require-dev": {
         "php": ">= 5.4.0",
