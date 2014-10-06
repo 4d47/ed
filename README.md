@@ -19,7 +19,6 @@ so update the configs to point to your database.  To install and run, type the f
 - [Assetic](https://github.com/kriswallsmith/assetic) Assetic is an asset management framework for PHP
 - [jQuery](http://jquery.com) write less, do more
 - [Select2](http://ivaynberg.github.com/select2) Select boxes replacement
-- [tinymce](http://tinymce.com) JavaScript WYSIWYG editor
 - [Bootstrap](http://getbootstrap.com) Front-end framework
 - [Bootbox.js](http://bootboxjs.com) Modal dialog boxes for Bootstrap
 - [bootstrap-datepicker.js](http://www.eyecon.ro/bootstrap-datepicker) Date picker for Bootstrap
