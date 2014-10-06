@@ -15,25 +15,25 @@ class AssetsResource extends Base
         switch ($this->rest) {
         case 'js/ed.js':
             $this->asset = $this->createAssetCollection(array(
-                'jquery-2.0.3.min.js',
-                'bootstrap.min.js',
-                'bootstrap-datetimepicker.min.js',
-                'bootstrap-timepicker.min.js',
-                'bootstrap-datepicker.js',
-                'select2.min.js',
-                'bootbox.min.js',
-                'main.js',
+                'js/jquery-2.0.3.min.js',
+                'js/bootstrap.min.js',
+                'js/bootstrap-datetimepicker.min.js',
+                'js/bootstrap-timepicker.min.js',
+                'js/bootstrap-datepicker.js',
+                'js/select2.min.js',
+                'js/bootbox.min.js',
+                'js/main.js',
             ));
         break;
         case 'css/ed.css':
             $this->asset = $this->createAssetCollection(array(
-                'bootstrap.min.css',
-                'bootstrap-theme.min.css',
-                'datepicker.css',
-                'bootstrap-datetimepicker.min.css',
-                'bootstrap-timepicker.min.css',
-                'select2.css',
-                'main.css'
+                'css/bootstrap.min.css',
+                'css/bootstrap-theme.min.css',
+                'css/datepicker.css',
+                'css/bootstrap-datetimepicker.min.css',
+                'css/bootstrap-timepicker.min.css',
+                'css/select2.css',
+                'css/main.css'
             ));
         break;
         default:
