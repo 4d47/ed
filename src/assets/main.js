@@ -1,20 +1,10 @@
 
 $(document).ready(function () {
-    // Add selector for datetime fields
     $('input[type=datetime]').datetimepicker();
     $('input[type=date]').datepicker();
     $('input[type=time]').timepicker({ showMeridian: false });
+    $('a.infos').popover().click(function() { return false });
 
-    // Add rich text editor to TEXT fields
-    tinymce.init({
-        selector: 'textarea',
-        menubar: false,
-        plugins: 'code table link autoresize fullscreen',
-        toolbar: 'styleselect bold italic link unlink numlink bullist indent outdent code fullscreen',
-        autoresize_max_height: 400
-    });
-
-    // Add confirmation dialog on delete button
     $('a[data-bb=confirm]').click(function () {
         var anchor = this;
         bootbox.confirm('Are you sure you want to <i>permanently</i> delete this record?', function (result) {
@@ -23,11 +13,7 @@ $(document).ready(function () {
         });
         return false;
     });
-
-    // Add widget for enum choices
     $('select.enum').select2({ minimumResultsForSearch: 8 });
-
-    // Add search select field for foreign keys
     $('input.ref').each(function (_, element) {
         var table = $(element).data('table');
         $(element).select2({
@@ -60,8 +46,6 @@ $(document).ready(function () {
             },
         });
     });
-
-    // Update infos on blob file upload
     $('input[type="file"]').change(function() {
         $(this).parent().next('.upload-file-info').html($(this).val());
     });
