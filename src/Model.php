@@ -221,8 +221,10 @@ class Model
     {
         $return = array();
         foreach ($data as $col => $value) {
+            // Skipping fields that do no have a definition in schema
+            // or value is empty string and column allow null.
             if (!empty($this->schema[$table][$col])
-                && (!empty($value) || !empty($this->schema[$table][$col]['null']))) {
+                && ! ($value == '' && !empty($this->schema[$table][$col]['null']))) {
                     $return[$col] = $value;
             }
         }
