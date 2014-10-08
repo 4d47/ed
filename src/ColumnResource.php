@@ -8,12 +8,6 @@ class ColumnResource extends Base
     public $id;
     public $column;
     public $data;
-    private $model;
-
-    public function __construct(Model $model)
-    {
-        $this->model = $model;
-    }
 
     public function get()
     {

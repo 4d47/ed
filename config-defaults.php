@@ -15,6 +15,15 @@ return
                 # Caching tag, change whenever the schema is changed,
                 # disable with `false`
             ),
+        'auth' =>
+            array(
+                # Adds HTTP basic auth
+                'basic' =>
+                    array(
+                        // 'username' => 'test',
+                        // 'password' => 'test',
+                    )
+            ),
         'filters' =>
             array(
                 'schema' =>
