@@ -37,11 +37,12 @@ class TableResource extends Base
         if ($this->id === 'new') {
             $this->id = $this->model->create($this->table, $_POST, $_FILES);
             session_flash('info', sprintf(_("%s was successfully created."), $this->table));
+            $url = static::link($this->table, $this->id);
         } else {
             $this->model->update($this->table, $this->id, $_POST, $_FILES);
             session_flash('info', sprintf(_("%s was successfully updated."), $this->table));
+            $url = session_flash('referer') ?: static::link($this->table, $this->id);
         }
-        $url = session_flash('referer') ?: static::link($this->table, $this->id);
         throw new \Http\SeeOther($url);
     }
 
