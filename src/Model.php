@@ -10,36 +10,17 @@ class Model
     private $selectFilter;
     private $updateFilter;
     private $maxPerPage;
-    private $auth;
     private $config;
 
 
     public function __construct(\PDO2 $pdo2, array $config)
     {
-        $config = $this->mergeConfig($config);
         $this->db = $pdo2;
         $this->schema = $config['filters']['schema']( DatabaseIntrospector::introspect($this->db->pdo, $config['db']['tag']) );
         $this->selectFilter = $config['filters']['select'];
         $this->updateFilter = $config['filters']['update'];
         $this->maxPerPage = $config['ui']['max_per_page'];
-        $this->auth = $config['auth'];
         $this->config = $config['ui'];
-
-    }
-
-
-    /**
-     * Test if $username/$password match what is configured
-     *
-     * @param string $username
-     * @param string $password
-     * @return boolean
-     */
-    public function checkBasicAuth($username, $password)
-    {
-        return empty($this->auth['basic']) ||
-            ($this->auth['basic']['username'] == $username
-            && $this->auth['basic']['password'] == $password);
     }
 
 
@@ -267,68 +248,5 @@ class Model
             $cols[] = ($column['type'] == 'blob') ? "$name IS NOT NULL AS $name" : $name;
         }
         return implode(',', $cols) . " FROM $table";
-    }
-
-
-    private function mergeConfig(array $config)
-    {
-        return array_replace_recursive($this->getDefaultConfig(), $config);
-    }
-
-
-    private function getDefaultConfig()
-    {
-        return  array(
-            'db' => array(
-                'tag' => false,
-            ),
-            'auth' => array(
-                # Adds simple HTTP basic auth check
-                'basic' => array(
-                    // 'username' => 'test',
-                    // 'password' => 'test',
-                )
-            ),
-            'filters' => array(
-                'schema' =>
-                    # Provides a way to remove tables and columns
-                    # from the display
-                    function ($schema) {
-                        // unset($schema['Customer'], $schema['Employee']);
-                        return $schema;
-                    },
-                'select' =>
-                    # Provides a way to systematically apply filters to 
-                    # search queries.  For example this could be used to
-                    # hide disabled data to user.
-                    function ($table, $params) {
-                        // if ($table == 'Album')
-                        //    $params['Title Like ?'] = '%Rock%';
-                        return $params;
-                    },
-                'update' =>
-                    # Provides a way to change data before
-                    # an UPDATE OR INSERT.
-                    function ($table, $data) {
-                        return $data;
-                    },
-                ),
-                'ui' => array(
-                    'locale' => 'en_CA',
-                    'stylesheets' => array(),
-                    'scripts' => array(),
-                    'labelize' =>
-                    # Provides a way to customize the display name for the tables and columns
-                        function ($label) {
-                            return \Stringy\StaticStringy::humanize(\Stringy\StaticStringy::underscored($label));
-                        },
-                    'max_per_page' => 50,
-                    'pagination' => array(
-                        'proximity' => 4,
-                        'prev_message' => '&laquo;',
-                        'next_message' => '&raquo;'
-                    )
-                )
-        );
     }
 }

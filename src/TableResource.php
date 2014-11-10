@@ -8,6 +8,12 @@ class TableResource extends Base
     public $id;
     public $extension;
     public $data;
+    private $model;
+
+    public function __construct(Model $model)
+    {
+        $this->model = $model;
+    }
 
     public function init()
     {
