@@ -18,7 +18,7 @@ $config = array_replace_recursive(require 'config-defaults.php', file_exists('co
 mb_internal_encoding('UTF-8');
 
 # wireup dependencies
-$injector = new Auryn\Provider();
+$injector = new Auryn\Injector();
 $injector->define('Ed\Model', array(':config' => $config));
 $injector->define('PDO', array(':dsn' => $config['db']['dsn'], ':username' => $config['db']['username'], ':passwd' => $config['db']['password'], ':options' => array()));
 
